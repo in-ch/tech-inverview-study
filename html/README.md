@@ -1,0 +1,1 @@
+# HTML attribute랑 property의 차이점을 설명해주세요.

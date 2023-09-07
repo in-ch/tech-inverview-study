@@ -51,9 +51,11 @@
 <details>
   <summary>Javascript</summary>
   
+  - [Javascript] 화살표 함수랑 다른 일반 함수의 차이점을 알려주세요.
+  - [Javascript] 화살표 함수에 this 객체가 없으므로써 예상 가능한 오류에 대해서 설명해주세요.
   - [Javascript] 화살표 함수랑 다른 일반 함수의 차이점은?
   - [Javascript] 얕은 복사 vs 깊은 복사에 대해서 설명해주세요.
-  - [Javascript] 동등 연산자(==)와 연산자의 차이점(===)
+  - [Javascript] 동등 연산자(==)와 연산자의 차이점(===)을 설명해주세요.
   - [Javascript] 왜 호이스팅이 일어나고 호이스팅이 일어남으로써 발생 가능한 오류는?
   - [Javascript] 제너레이터에 대해서 설명해주세요.
   - [Javascript] 실행 컨텍스트에 대해서 설명해주세요.
