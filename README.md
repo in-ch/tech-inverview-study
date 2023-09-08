@@ -2,7 +2,7 @@
 
 > 매일 오후 8시부터 9시 까지 스터디를 진행합니다.
 
-## 🔖 Rule
+# 🔖 Rule
 
 1. 각자 3개의 질문을 준비해온다.
 2. 질문에 응답을 한다.
@@ -18,7 +18,7 @@
 
 <br/>
 
-## 😎 스터디원
+# 😎 스터디원
 
 <div>
   <a href="https://github.com/in-ch">
@@ -31,7 +31,7 @@
 
 <br/>
 
-## 📌 주제
+# 📌 주제
 
 ### HTML
 <details>
@@ -70,3 +70,11 @@
   - [iterable 객체에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#iterable-%EA%B0%9D%EC%B2%B4%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
 
 </details>
+
+## 진행 사항 
+
+- 23년 9월 5일 시작
+- 23년 9월 6일 (o)
+- 23년 9월 7일 (o)
+- 23년 9월 8일 (o)
+
