@@ -238,3 +238,4 @@ for (let num of range) {
 
 # SEO 최적화 방법에 대해서 설명해주세요.
 
+# MVC, MVVM 모델에 대해 설명해주세요.
