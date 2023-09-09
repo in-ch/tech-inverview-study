@@ -13,6 +13,8 @@
     <td><a href='#html'>🖥️ HTML</a></td>
     <td><a href='#css'>📂 CSS</a></td>
     <td><a href='#javascript'>📦 JAVASCRIPT</a></td>
+    <td><a href='#web'>📦 WEB</a></td>
+    <td><a href='#css'>📦 CS</a></td>
   </tr>
 </table>
 
@@ -77,4 +79,4 @@
 - 23년 9월 6일 (o)
 - 23년 9월 7일 (o)
 - 23년 9월 8일 (o)
-
+- 23년 9월 9일 (o)
