@@ -13,8 +13,8 @@
     <td><a href='#html'>🖥️ HTML</a></td>
     <td><a href='#css'>📂 CSS</a></td>
     <td><a href='#javascript'>📦 JAVASCRIPT</a></td>
-    <td><a href='#web'>📦 WEB</a></td>
-    <td><a href='#css'>📦 CS</a></td>
+    <td><a href='#web'>🏠 WEB</a></td>
+    <td><a href='#cs'>💻 CS</a></td>
   </tr>
 </table>
 
@@ -70,6 +70,28 @@
   - [양방향 바인딩과 단방향 바인딩에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#%EC%96%91%EB%B0%A9%ED%96%A5-%EB%B0%94%EC%9D%B8%EB%94%A9%EA%B3%BC-%EB%8B%A8%EB%B0%A9%ED%96%A5-%EB%B0%94%EC%9D%B8%EB%94%A9%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
   - [React hooks에 대한 장점을 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#react-hooks%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9E%A5%EC%A0%90%EC%9D%84-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
   - [iterable 객체에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#iterable-%EA%B0%9D%EC%B2%B4%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
+
+</details>
+
+### WEB
+
+<details>
+  <summary>질문 목록</summary>
+
+- [MVC, MVVM 모델에 대해 설명해주세요.](https://github.com/in-ch/tech-inverview-study/blob/master/web/README.md#mvc-mvvm-%EB%AA%A8%EB%8D%B8%EC%97%90-%EB%8C%80%ED%95%B4-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
+- [HTTP와 HTTPS의 차이점은?](https://github.com/in-ch/tech-inverview-study/blob/master/web/README.md#http%EC%99%80-https%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90%EC%9D%80)
+- [CORS 에러 - 정의, 특징, 해결 방법](https://github.com/in-ch/tech-inverview-study/blob/master/web/README.md#cors-%EC%97%90%EB%9F%AC---%EC%A0%95%EC%9D%98-%ED%8A%B9%EC%A7%95-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95)
+- [cors가 왜 등장했는지에 대해 설명해주세요.](https://github.com/in-ch/tech-inverview-study/blob/master/web/README.md#cors%EA%B0%80-%EC%99%9C-%EB%93%B1%EC%9E%A5%ED%96%88%EB%8A%94%EC%A7%80%EC%97%90-%EB%8C%80%ED%95%B4-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
+- [쿠키, 세션, 로컬 스토리지의 장단점](https://github.com/in-ch/tech-inverview-study/blob/master/web/README.md#%EC%BF%A0%ED%82%A4-%EC%84%B8%EC%85%98-%EB%A1%9C%EC%BB%AC-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80%EC%9D%98-%EC%9E%A5%EB%8B%A8%EC%A0%90)
+
+</details>
+
+### CS
+
+<details>
+  <summary>질문 목록</summary>
+
+- [OOP의 특징에 대해 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/cs#oop%EC%9D%98-%ED%8A%B9%EC%A7%95%EC%97%90-%EB%8C%80%ED%95%B4-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
 
 </details>
 
