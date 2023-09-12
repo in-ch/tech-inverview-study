@@ -67,7 +67,7 @@
   - [실행 컨텍스트에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#%EC%8B%A4%ED%96%89-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
   - [이벤트 버블링에 대해서 설명해주시고 방지하는 방법에 대해서 알려주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EB%B2%84%EB%B8%94%EB%A7%81%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%8B%9C%EA%B3%A0-%EB%B0%A9%EC%A7%80%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%95%8C%EB%A0%A4%EC%A3%BC%EC%84%B8%EC%9A%94)
   - [this와 연관지어서 bind에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#this%EC%99%80-%EC%97%B0%EA%B4%80%EC%A7%80%EC%96%B4%EC%84%9C-bind%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
-  - [양방향 바인딩과 단방향 바인딩에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#%EC%96%91%EB%B0%A9%ED%96%A5-%EB%B0%94%EC%9D%B8%EB%94%A9%EA%B3%BC-%EB%8B%A8%EB%B0%A9%ED%96%A5-%EB%B0%94%EC%9D%B8%EB%94%A9%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
+  - [데이터 바인딩에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#%EC%96%91%EB%B0%A9%ED%96%A5-%EB%B0%94%EC%9D%B8%EB%94%A9%EA%B3%BC-%EB%8B%A8%EB%B0%A9%ED%96%A5-%EB%B0%94%EC%9D%B8%EB%94%A9%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
   - [React hooks에 대한 장점을 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#react-hooks%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9E%A5%EC%A0%90%EC%9D%84-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
   - [iterable 객체에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#iterable-%EA%B0%9D%EC%B2%B4%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
 
@@ -102,3 +102,5 @@
 - 23년 9월 7일 (o)
 - 23년 9월 8일 (o)
 - 23년 9월 9일 (o)
+- 23년 9월 10일 (x) 
+- 23년 9월 11일 (o)
