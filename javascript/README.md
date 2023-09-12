@@ -478,3 +478,25 @@ createObjects();
 이에 해결책으로 제시된 let과 const의 특징은 다음과 같다.
 let은 변수 중복 선언이 불가능하지만 재할당은 가능하다.
 const는 let과 같이 재선언이 불가능하지만, 또 재할당도 불가능하다. 다만 원시 값만 불가능하고 객체는 가능하다. 또한 반드시 선언과 동시에 초기화를 진행해야한다.
+
+```tsx
+function testVarLetConst() {
+  var a;
+  let b;
+  // const c; 
+  // 오류가 나옴. 할당 이전에 실행 불가, SyntaxError: Missing initializer in const declaration 에러가 나옴
+  
+  console.log({
+    a, b
+  });
+  // {a: undefined, b: undefined}
+  a = 'a';
+  b = 'b';
+  console.log({
+    a, b
+  });
+  // {a: 'a', b: 'b'}
+}
+
+testVarLetConst();
+```
