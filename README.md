@@ -50,6 +50,7 @@
 
 - [px, em, rem에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/blob/master/css/README.md#px-em-rem%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
 - [ next.js에서 css를 정의하기 위한 방법 중 선호하는 방식과 왜 그 방식을 선호하는지에 대해 설명해주세요.](https://github.com/in-ch/tech-inverview-study/blob/master/css/README.md#nextjs%EC%97%90%EC%84%9C-css%EB%A5%BC-%EC%A0%95%EC%9D%98%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-%EB%B0%A9%EB%B2%95-%EC%A4%91-%EC%84%A0%ED%98%B8%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D%EA%B3%BC-%EC%99%9C-%EA%B7%B8-%EB%B0%A9%EC%8B%9D%EC%9D%84-%EC%84%A0%ED%98%B8%ED%95%98%EB%8A%94%EC%A7%80%EC%97%90-%EB%8C%80%ED%95%B4-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
+- [position에 대해 설명해주세요.](https://github.com/in-ch/tech-inverview-study/blob/master/css/README.md#position%EC%97%90-%EB%8C%80%ED%95%B4-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
 
 </details>
 
@@ -70,6 +71,13 @@
   - [데이터 바인딩에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#%EC%96%91%EB%B0%A9%ED%96%A5-%EB%B0%94%EC%9D%B8%EB%94%A9%EA%B3%BC-%EB%8B%A8%EB%B0%A9%ED%96%A5-%EB%B0%94%EC%9D%B8%EB%94%A9%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
   - [React hooks에 대한 장점을 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#react-hooks%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9E%A5%EC%A0%90%EC%9D%84-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
   - [iterable 객체에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#iterable-%EA%B0%9D%EC%B2%B4%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
+  - [SEO 최적화 방법에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#seo-%EC%B5%9C%EC%A0%81%ED%99%94-%EB%B0%A9%EB%B2%95%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
+  - [자바스크립트의 메모리 관리에 대해 아는 대로 설명해주세요(*)](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%9D%98-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC%EC%97%90-%EB%8C%80%ED%95%B4-%EC%95%84%EB%8A%94-%EB%8C%80%EB%A1%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
+  - [메모리 누수를 위해 해야할 것들을 알려주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%88%84%EC%88%98%EB%A5%BC-%EC%9C%84%ED%95%B4-%ED%95%B4%EC%95%BC%ED%95%A0-%EA%B2%83%EB%93%A4%EC%9D%84-%EC%95%8C%EB%A0%A4%EC%A3%BC%EC%84%B8%EC%9A%94)
+  - [Promise와 Callback의 차이를 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#promise%EC%99%80-callback%EC%9D%98-%EC%B0%A8%EC%9D%B4%EB%A5%BC-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
+  - [var, let, const의 차이를 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#var-let-const%EC%9D%98-%EC%B0%A8%EC%9D%B4%EB%A5%BC-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
+
+
 
 </details>
 
@@ -104,3 +112,5 @@
 - 23년 9월 9일 (o)
 - 23년 9월 10일 (x) 
 - 23년 9월 11일 (o)
+- 23년 9월 12일 (x) - 여행 이슈
+- 23년 9월 13일 (o)
