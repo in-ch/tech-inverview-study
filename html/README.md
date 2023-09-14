@@ -21,3 +21,17 @@ Property는 attribute에 대한 HTML DOM트리 안에서의 표현이다. 같은
 
 1. <code>인증이 필요한 API 요청</code>: 웹 페이지가 서버에서 인증된 세션을 사용해야 하는 경우, <code>`withCredentials`</code>를 <code>`true`</code>로 설정하여 브라우저가 세션 관련 쿠키 및 헤더를 요청에 포함하도록 할 수 있습니다. 이를 통해 사용자 인증 정보를 서버로 전달할 수 있습니다.
 2. <code>크로스 도메인 요청</code>: 주로 동일 출처 정책(same-origin policy)에 따라 다른 출처(origin)의 API에 대한 요청을 보낼 때 사용됩니다. 다른 출천의 서버로 요청을 보낼 때, <code>`withCredentials`</code>를 <code>`true`</code>로 설정하면 브라우저는 쿠키와 같은 인증 정보를 공유하므로, 해당 서버에서 인증 및 권한을 확인할 수 있습니다.
+
+# 웹 프로토콜이란?
+
+웹 프로토콜은 웹에서 쓰이는 통신규약입니다. 통신규약이라는 것은 쉽게 설명하면, 통신을 할때 내가 이렇게 할게 너는 이렇게 해줘라고 약속하는 것입니다.
+예시)
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/a03e70e2-9f82-4a7b-b29e-e98f66f3f389/55ee6f15-4ff7-437f-a7dc-878e504e41dc/Untitled.png)
+
+- protocol : 문서에 접근하기 위해 사용하는 프로토콜 이름
+- computer_name : 문서가 있는 컴퓨터(서버)의 도메인 이름
+- port : 서버가 어떤 포트 숫자를 바라보고 있는지 (선택)
+- document_name : 서버 컴퓨터에 있는 특정 문서의 이름
+- parameters: 페이지에 넘기는 변수 (선택)
+
+웹과 관련된 프로토콜로는 HTTP, IP/MAC/ARP, TCP/UDP, DNS 등이 있다.
