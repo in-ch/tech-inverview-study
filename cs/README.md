@@ -12,8 +12,8 @@ OOP의 특징
 # 자바스크립트의 배열이 실제 자료구조 배열이 아닌데 그 이유는?
 자바스크립트의 배열은 실제 자료구조의 배열과 다르게 HashMap으로 구현되어있다. 이 HashMap을 구현하기 위해서는 연결리스트로 구현하게 되는데 연결리스트에서 값을 찾기 위해서는 탐색해나가면서 값을 찾는 불상사가 발생한다. 이를 해결하기 위해서 타이핑된배열(Int8Array,Float32Array 등) 이 추가되고 있다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/a03e70e2-9f82-4a7b-b29e-e98f66f3f389/0f1c82c7-23e6-40dd-b7a1-ef98644cdfe8/Untitled.png)
+![KakaoTalk_Photo_2023-09-14-21-46-14](https://github.com/in-ch/tech-inverview-study/assets/49556566/642af43b-94bb-4f0f-9a10-d480221c9df2)
 Map은 키와 값으로 구성된 Entry객체를 저장하는 구조를 가지고 있는 자료구조
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/a03e70e2-9f82-4a7b-b29e-e98f66f3f389/621621af-4131-467a-b53e-2c423f18ca5d/Untitled.png)
+![KakaoTalk_Photo_2023-09-14-21-46-20](https://github.com/in-ch/tech-inverview-study/assets/49556566/1825a103-9d98-470d-99ac-b572a174d0c0)
 연결리스트(Linked List)는 각 노드가 데이터와 포인터를 가지고 한 줄로 연결되어 있는 방식으로 데이터를 저장하는 자료구조

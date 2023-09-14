@@ -40,6 +40,9 @@
   <summary>질문 목록</summary>
 
 - [attribute랑 property의 차이점을 설명해주세요.](https://github.com/in-ch/tech-inverview-study/blob/master/html/README.md#html-attribute%EB%9E%91-property%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90%EC%9D%84-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
+- [withCredentials에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/html#withcredentials%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
+- [웹 프로토콜이란?](https://github.com/in-ch/tech-inverview-study/tree/master/html#%EC%9B%B9-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C%EC%9D%B4%EB%9E%80)
+
 
 </details>
 
@@ -100,6 +103,8 @@
   <summary>질문 목록</summary>
 
 - [OOP의 특징에 대해 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/cs#oop%EC%9D%98-%ED%8A%B9%EC%A7%95%EC%97%90-%EB%8C%80%ED%95%B4-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
+- [자바스크립트의 배열이 실제 자료구조 배열이 아닌데 그 이유는?](https://github.com/in-ch/tech-inverview-study/tree/master/cs#%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%9D%98-%EB%B0%B0%EC%97%B4%EC%9D%B4-%EC%8B%A4%EC%A0%9C-%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EB%B0%B0%EC%97%B4%EC%9D%B4-%EC%95%84%EB%8B%8C%EB%8D%B0-%EA%B7%B8-%EC%9D%B4%EC%9C%A0%EB%8A%94)
+
 
 </details>
 
@@ -114,3 +119,4 @@
 - 23년 9월 11일 (o)
 - 23년 9월 12일 (x) - 여행 이슈
 - 23년 9월 13일 (o)
+- 23년 9월 14일 (o)
