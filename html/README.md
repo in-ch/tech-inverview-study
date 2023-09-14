@@ -25,8 +25,8 @@ Property는 attribute에 대한 HTML DOM트리 안에서의 표현이다. 같은
 # 웹 프로토콜이란?
 
 웹 프로토콜은 웹에서 쓰이는 통신규약입니다. 통신규약이라는 것은 쉽게 설명하면, 통신을 할때 내가 이렇게 할게 너는 이렇게 해줘라고 약속하는 것입니다.
-예시)
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/a03e70e2-9f82-4a7b-b29e-e98f66f3f389/55ee6f15-4ff7-437f-a7dc-878e504e41dc/Untitled.png)
+
+예시)  protocol://computer_name:port/document_name?parameters
 
 - protocol : 문서에 접근하기 위해 사용하는 프로토콜 이름
 - computer_name : 문서가 있는 컴퓨터(서버)의 도메인 이름
