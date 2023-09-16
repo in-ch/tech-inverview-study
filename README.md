@@ -79,7 +79,8 @@
   - [메모리 누수를 위해 해야할 것들을 알려주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%88%84%EC%88%98%EB%A5%BC-%EC%9C%84%ED%95%B4-%ED%95%B4%EC%95%BC%ED%95%A0-%EA%B2%83%EB%93%A4%EC%9D%84-%EC%95%8C%EB%A0%A4%EC%A3%BC%EC%84%B8%EC%9A%94)
   - [Promise와 Callback의 차이를 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#promise%EC%99%80-callback%EC%9D%98-%EC%B0%A8%EC%9D%B4%EB%A5%BC-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
   - [var, let, const의 차이를 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#var-let-const%EC%9D%98-%EC%B0%A8%EC%9D%B4%EB%A5%BC-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
-
+  - [브라우저는 JSX 파일을 읽을 수 있나요?](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%8A%94-jsx-%ED%8C%8C%EC%9D%BC%EC%9D%84-%EC%9D%BD%EC%9D%84-%EC%88%98-%EC%9E%88%EB%82%98%EC%9A%94)
+  - [JSX 문법의 특징과 준수사항을 몇 개 알려준다면?](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#jsx-%EB%AC%B8%EB%B2%95%EC%9D%98-%ED%8A%B9%EC%A7%95%EA%B3%BC-%EC%A4%80%EC%88%98%EC%82%AC%ED%95%AD%EC%9D%84-%EB%AA%87-%EA%B0%9C-%EC%95%8C%EB%A0%A4%EC%A4%80%EB%8B%A4%EB%A9%B4)
 
 
 </details>
@@ -115,8 +116,10 @@
 - 23년 9월 7일 (o)
 - 23년 9월 8일 (o)
 - 23년 9월 9일 (o)
-- 23년 9월 10일 (x) 
+- 23년 9월 10일 (x) - 휴식
 - 23년 9월 11일 (o)
 - 23년 9월 12일 (x) - 여행 이슈
 - 23년 9월 13일 (o)
 - 23년 9월 14일 (o)
+- 23년 9월 15일 (o)
+- 23년 9월 16일 (x) - 휴식
