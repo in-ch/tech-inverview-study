@@ -95,6 +95,8 @@
 - [CORS 에러 - 정의, 특징, 해결 방법](https://github.com/in-ch/tech-inverview-study/blob/master/web/README.md#cors-%EC%97%90%EB%9F%AC---%EC%A0%95%EC%9D%98-%ED%8A%B9%EC%A7%95-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95)
 - [cors가 왜 등장했는지에 대해 설명해주세요.](https://github.com/in-ch/tech-inverview-study/blob/master/web/README.md#cors%EA%B0%80-%EC%99%9C-%EB%93%B1%EC%9E%A5%ED%96%88%EB%8A%94%EC%A7%80%EC%97%90-%EB%8C%80%ED%95%B4-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
 - [쿠키, 세션, 로컬 스토리지의 장단점](https://github.com/in-ch/tech-inverview-study/blob/master/web/README.md#%EC%BF%A0%ED%82%A4-%EC%84%B8%EC%85%98-%EB%A1%9C%EC%BB%AC-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80%EC%9D%98-%EC%9E%A5%EB%8B%A8%EC%A0%90)
+- [비동기 함수에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/web#%EB%B9%84%EB%8F%99%EA%B8%B0-%ED%95%A8%EC%88%98%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
+- [브라우저의 렌더링 원리를 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/web#%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EC%9D%98-%EB%A0%8C%EB%8D%94%EB%A7%81-%EC%9B%90%EB%A6%AC%EB%A5%BC-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
 
 </details>
 
@@ -122,4 +124,6 @@
 - 23년 9월 13일 (o)
 - 23년 9월 14일 (o)
 - 23년 9월 15일 (o)
-- 23년 9월 16일 (x) - 휴식
+- 23년 9월 16일 (x) - 주말
+- 23년 9월 17일 (x) - 주말
+- 23년 9월 18일 (o)
