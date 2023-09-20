@@ -116,3 +116,46 @@ Promise 객체는 비동기 작업이 성공적으로 완료되었는지 혹은 
 4. 이제, 브라우저는 렌더 트리를 이용하여 각 요소의 크기와 위치를 계산하는 과정인 레이아웃을 거쳐 화면에 요소를 그리는 페인팅 과정을 거치게 됩니다. 이때, 요소의 배경, 테두리, 글자 등을 그리게 됩니다. 
 
 
+# api 요청 옵션들을 설명해주세요.
+
+- <code>Keep Alive</code>: 네트워크 연결에서 사용되는 설정 중 하나로, 연결을 활성 상태로 유지하거나 비활성화하는 데 사용, 동일한 연결을 재사용하여 다수의 요청을 처리할 수 있습니다. 이렇게 하면 연결을 설정하고 해제하는 데 필요한 오버헤드가 줄어들어 성능 향상이 이루어질 수 있다. -> 기본값 true
+- <code>Timeout (타임아웃)</code>: 타임아웃 옵션은 서버로부터 응답을 받을 때까지 기다리는 최대 시간을 설정. 만약 서버가 지정된 시간 내에 응답하지 않으면 요청은 실패합니다. 이것은 응답이 없거나 네트워크 문제로 인한 지연을 처리하는 데 유용
+
+```javascript
+import axios from 'axios';
+
+// Axios 인스턴스를 생성합니다.
+const instance = axios.create({
+  baseURL: 'https://api.example.com', // 요청을 보낼 서버의 기본 URL
+  
+  // timeout 옵션 설정 (5초)
+  timeout: 5000, // 요청이 5초 동안 응답을 기다립니다.
+});
+```
+- <code>HTTP Method (HTTP 메서드)</code>: HTTP 요청의 종류를 나타내는 메서드를 선택할 수 있다. 가장 일반적인 메서드로는 GET (데이터를 가져오기), POST (데이터를 서버로 보내기), PUT (데이터 업데이트), DELETE (데이터 삭제) 등이 있다.
+- <code>Headers (헤더)</code>: 요청과 관련된 추가 정보를 헤더에 포함할 수 있음. 예를 들어, 인증 정보나 사용자 에이전트(user-agent) 정보를 헤더에 추가 가능
+- <code>Query Parameters (쿼리 매개변수)</code>: URL에 추가 매개변수를 포함하여 서버에 추가 정보를 전달, 예를 들어, 검색어나 필터링 매개변수를 URL에 추가 가능
+- <code>Request Body (요청 본문)</code>:  POST 또는 PUT 요청에서 데이터를 서버로 보낼 때 사용, 보통 json을 사용
+- <code>Authentication (인증)</code>: 요청에 대한 인증 정보를 포함하여 보안된 엔드포인트에 접근 가능 -> 인증 토큰 등을 담음
+- <code>Caching (캐싱)</code>: 요청 결과를 로컬 캐시에 저장하여 동일한 요청을 다시 보내지 않고 캐시된 데이터를 사용할 수 있게 함. -> 서버 부하를 줄임. -> 기본값은 true
+```jsx
+const axios = require('axios');
+
+// Axios 인스턴스 생성
+const instance = axios.create({
+  baseURL: 'https://api.example.com', // 원격 API의 기본 URL
+  timeout: 5000, // 요청 타임아웃(ms)
+  headers: {
+    'Cache-Control': 'no-cache', // 캐시 비활성화
+  },
+});
+
+// GET 요청
+instance.get('/data')
+  .then((response) => {
+    console.log('Response Data:', response.data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+```
