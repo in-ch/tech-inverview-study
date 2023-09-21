@@ -66,3 +66,29 @@ props를 통해 동적으로 스타일을 변경할 수 있으며, 상태와 함
 - absolute: absolute를 속성으로 가진 요소는 DOM 트리에서 자신의 상위 요소 중 static이 아닌 첫 번째 상위 요소를 배치 기준으로 가진다. 만약 없다면 body가 배치 기준이다. 가장 큰 특징으로는 해당 요소는 독립되어 다른 요소들과 더 이상 상호작용하지 않게 된다는 것이다.
 - fixed: 속성값의 배치 기준이 뷰포트, 즉 브라우저 전체 화면인 경우이다. absolute와 마찬가지로 HTML 문서 상에서 독립되어 다른 요소와 상호작용 하지 않는다. 보통 라이브 채팅 버튼을 구현할 때 많이 쓰인다.
 - sticky: 가장 최근에 추가된 position 속성으로, 브라우저 화면을 스크롤할 때 효과가 나타난다. 기존에는 relative와 같이 동작하다가 스크롤할 때 지정 지점에서 요소를 고정시킨다. 다만, 자신의 부모 요소 안에서만 적용되며 부모의 height 값에 따라 고정된다. 또한 부모의 overflow가 hidden, auto, scroll 이면 적용이 안 된다.
+
+# Flex와 Grid의 차이점에 대해서 설명해주세요.
+
+Flex는 주로 단일 축 방향의 레이아웃을 구성하는 데 사용되며, 주로 수평 방향으로 레이아웃을 정렬. 
+Grid는 2차원 그리드 시스템을 구성하는 데 사용되며, 수평과 수직 방향으로 모두 레이아웃을 정렬 가능 
+Flex는 아이템들의 크기가 자유로워 유동적으로 변화 가능. 반면에 Grid는 아이템들의 크기를 미리 정의하여 각 셀의 크기를 일정하게 유지. 
+Flex는 유동적인 레이아웃 변화를 구성하기 적합하며, 반면에 Grid는 미리 정의된 2차원 그리드 구조를 유지하기 때문에 레이아웃 변화가 적은 경우에 적합
+
+ex) grid 예제 
+```css
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  grid-gap: 10px;
+}
+
+.item {
+  width: 100px;
+  height: 100px;
+  background-color: lightgreen;
+  text-align: center;
+  line-height: 100px;
+}
+```
+
+<code>grid-template-columns: 1fr 2fr 1fr; /* 1fr, 2fr, 1fr의 비율로 열을 설정 */</code>
