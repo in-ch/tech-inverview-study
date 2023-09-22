@@ -687,5 +687,5 @@ console.log(name1);	// undefined
 name1 = 'Mike';		// name1은 선언과 초기화가 동시에 되어 호이스팅 되고 ‘Mike’(할당)는 호이스팅 되지 않는다.
 
 console.log(name2);	// ReferenceError
-name2 = 'Michael';	// name2의 선언만 호이스팅 되고 초기화는 되지 않은 채로 호출된다.
+let name2 = 'Michael';	// name2의 선언만 호이스팅 되고 초기화는 되지 않은 채로 호출된다.
 ```
