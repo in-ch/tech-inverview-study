@@ -92,3 +92,9 @@ ex) grid 예제
 ```
 
 <code>grid-template-columns: 1fr 2fr 1fr; /* 1fr, 2fr, 1fr의 비율로 열을 설정 */</code>
+
+### css에서 margin과 padding에 대해 말해주세요.
+
+- margin: object와 화면 사이의 여백. border의 바깥쪽
+- padding: object 내의 여백. content 영역이 배경 색이나 배경 이미지를 가질 때, padding에도 영향을 미치기 때문에 content의 연장으로 볼 수 있다.
+게다가 margin은 auto와 음수값을 가질 수 있다.

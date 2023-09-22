@@ -578,12 +578,12 @@ testVarLetConst();
 
 ```tsx
 function App() {
-		return (
-				<div>
-        	<h1></h1>
-        	<h2></h2>
-        </div>
-		)
+	return (
+		<div>
+        		<h1></h1>
+        		<h2></h2>
+        	</div>
+	)
 }
 ```
 
@@ -675,3 +675,18 @@ JS heap 그래프도 역시 메모리 사용이 계속 증가되고 있음을 �
 
 
 </details>
+
+### TDZ란?
+
+Temporal Dead Zone, 스코프의 시작 지점부터 초기화 시작 지점까지의 구간.
+변수는 선언, 초기화, 할당 세 단계에 걸쳐 생성되는데, var는 선언과 초기화를 동시에 진행해서 TDZ가 따로 존재하지 않지만 let은 선언과 초기화가 분리되어 TDZ가 존재한다. 그래서 아래 코드들 같이 선언만 된 상태에서 호출하고 그 뒤에 할당했을 때, let과 var는 다른 결과를 나타낸다.
+
+```tsx
+var name1;
+console.log(name1);	// undefined
+name1 = 'Mike';		// name1은 호이스팅 되고 ‘Mike’는 호이스팅 되지 않는다.
+
+let name2;
+console.log(name2);	// ReferenceError
+name2 = 'Michael';
+```

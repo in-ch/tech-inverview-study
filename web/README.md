@@ -159,3 +159,8 @@ instance.get('/data')
     console.error('Error:', error);
   });
 ```
+
+### Reflow와 Repaint에 대해 설명해주세요.
+
+브라우저에서 Render Tree는 문서의 시각적 측면에서 올바른 순서대로 내용을 그리도록 하기 위한 목적을 갖고 있다. 따라서 DOM과 Render Tree는 항상 일치하지는 않는다. 예를 들어, display: none이나 head 같은 건 트리에서 제외시킨다. 그리고 브라우저는 layout 산출 후 painting 처리를 한다.
+여기서 layout 계산을 다시 하는 것을 reflow, painting을 다시하는 것을 repainting이라고 하고 이것은 대개 필연적이다. 이것은 리소스를 소모하고 성능 저하를 유발할 수 있기 때문에 원인을 알고 최소화하는 것이 중요하다.
