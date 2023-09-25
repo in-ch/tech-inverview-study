@@ -54,6 +54,7 @@
 - [px, em, rem에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/blob/master/css/README.md#px-em-rem%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
 - [ next.js에서 css를 정의하기 위한 방법 중 선호하는 방식과 왜 그 방식을 선호하는지에 대해 설명해주세요.](https://github.com/in-ch/tech-inverview-study/blob/master/css/README.md#nextjs%EC%97%90%EC%84%9C-css%EB%A5%BC-%EC%A0%95%EC%9D%98%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-%EB%B0%A9%EB%B2%95-%EC%A4%91-%EC%84%A0%ED%98%B8%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D%EA%B3%BC-%EC%99%9C-%EA%B7%B8-%EB%B0%A9%EC%8B%9D%EC%9D%84-%EC%84%A0%ED%98%B8%ED%95%98%EB%8A%94%EC%A7%80%EC%97%90-%EB%8C%80%ED%95%B4-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
 - [position에 대해 설명해주세요.](https://github.com/in-ch/tech-inverview-study/blob/master/css/README.md#position%EC%97%90-%EB%8C%80%ED%95%B4-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
+- [css에서 margin과 padding에 대해 말해주세요.](https://github.com/in-ch/tech-inverview-study/blob/master/css/README.md#css%EC%97%90%EC%84%9C-margin%EA%B3%BC-padding%EC%97%90-%EB%8C%80%ED%95%B4-%EB%A7%90%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
 
 </details>
 
@@ -97,6 +98,8 @@
 - [쿠키, 세션, 로컬 스토리지의 장단점](https://github.com/in-ch/tech-inverview-study/blob/master/web/README.md#%EC%BF%A0%ED%82%A4-%EC%84%B8%EC%85%98-%EB%A1%9C%EC%BB%AC-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80%EC%9D%98-%EC%9E%A5%EB%8B%A8%EC%A0%90)
 - [비동기 함수에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/web#%EB%B9%84%EB%8F%99%EA%B8%B0-%ED%95%A8%EC%88%98%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
 - [브라우저의 렌더링 원리를 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/web#%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EC%9D%98-%EB%A0%8C%EB%8D%94%EB%A7%81-%EC%9B%90%EB%A6%AC%EB%A5%BC-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
+- [Reflow와 Repaint에 대해 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/css#css%EC%97%90%EC%84%9C-margin%EA%B3%BC-padding%EC%97%90-%EB%8C%80%ED%95%B4-%EB%A7%90%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
+- [TDZ란?](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#tdz%EB%9E%80)
 
 </details>
 
@@ -129,3 +132,5 @@
 - 23년 9월 18일 (o)
 - 23년 9월 19일 (x) 
 - 23년 9월 20일 (o)
+- 23년 9월 21일 (o)
+- 23년 9월 22일 (o)
