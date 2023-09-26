@@ -84,7 +84,7 @@ fun(1, 2, 3); // error !!!
 # 얕은 복사 vs 깊은 복사에 대해서 설명해주세요.
 
 - 얕은 복사 (Shallow Copy):
-
+(배열이나 함수도 얕은 복사, 깊은 복사 가능 -> 그냥 참조가 복사된다고 이해하면 될듯)
 얕은 복사는 객체를 복사할 때, 원본 객체의 프로퍼티들을 새로운 객체로 복사하지만, 프로퍼티 값이 객체인 경우에는 참조를 공유합니다.
 얕은 복사를 통해 복사된 객체와 원본 객체는 부분적으로 공유된다고 생각할 수 있습니다.
 주로 Object.assign(), 전개 연산자 (...)를 사용하여 얕은 복사를 수행합니다.
@@ -696,4 +696,32 @@ name1 = 'Mike';		// name1은 선언과 초기화가 동시에 되어 호이스�
 
 console.log(name2);	// ReferenceError
 let name2 = 'Michael';	// name2의 선언만 호이스팅 되고 초기화는 되지 않은 채로 호출된다.
+```
+
+# 이벤트 핸들러 vs 이벤트 리스너 
+
+- 이벤트 핸들러 (Event Handlers):
+
+이벤트 핸들러는 HTML 요소에 직접 이벤트 처리 코드를 연결하는 방법입니다.
+주로 HTML 요소의 속성으로 사용되며, 이벤트가 발생할 때 실행할 JavaScript 코드를 포함합니다.
+예를 들어,
+ 
+```javascript
+<button onclick="myFunction()">Click me</button>
+```
+
+와 같이 HTML 요소에 직접 이벤트 핸들러를 추가할 수 있습니다.
+이벤트 핸들러는 요소와 이벤트 간의 강력한 결합을 가지며, 여러 이벤트 핸들러를 동시에 연결하기 어려울 수 있습니다.
+
+- 이벤트 리스너 (Event Listeners):
+
+이벤트 리스너는 HTML 요소와 JavaScript 코드를 분리하는 방법입니다.
+addEventListener 메서드를 사용하여 HTML 요소에 이벤트 리스너를 추가합니다.
+이벤트 리스너는 이벤트가 발생했을 때 실행할 함수를 지정하는 방식으로 작동합니다.
+이벤트 리스너를 사용하면 하나의 요소에 여러 이벤트 리스너를 연결하고, 이벤트 핸들링 로직을 모듈화할 수 있으며, 요소와 이벤트 간의 결합이 느슨합니다.
+예를 들어:
+
+```javascript
+const button = document.querySelector('button');
+button.addEventListener('click', myFunction);
 ```
