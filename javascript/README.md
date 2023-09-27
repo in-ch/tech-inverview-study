@@ -785,3 +785,62 @@ console.log(newObj); // { a: 1, b: 2, c: 3 }
 ```
 
 추가로, depth가 깊어지면 Spread Operator와 Object.assign은 코드가 많아져 immer의 사용이 더 유리하다.
+
+# 상속 및 prototype에 대해서 설명해주세요.
+JavaScript는 프로토타입 기반의 언어로, 모든 객체는 프로토타입 객체와 연결되어 있다.
+여기서 프로토타입은 객체가 다른 객체로부터 속성과 메소드를 상속받을 수 있도록 하는 링크의 역할을 한다. -> 상속이 가능하게 한다. 
+
+```javascript
+const car = {
+  wheels: 4,
+  drive() {
+    console.log("drive..");
+  },
+},
+
+const bmw = {
+  color: 'red',
+  navigation: 1,
+}
+
+bmw.__proto__ = car;
+```
+
+- Prototype Chain 
+계속해서 상속이 가능하다. 
+![스크린샷 2023-09-27 오후 7 52 34](https://github.com/in-ch/tech-inverview-study/assets/49556566/440f6dcf-2fb1-496c-95a8-4d34a189a8f1)
+
+- 상속받은 객체의 프로퍼티 순회 
+
+1. for in 
+<code>for(p in x)</code> 이렇게 사용하고 상속받은 key 값들도 다 출력한다.
+
+2. Object.keys, Object.values 
+- 상속받은 key값이나 value 값들은 출력하지 않음. 
+
+- 생성자 함수에서의 상속 방법 
+<code>__proto__</code>를 사용하는 것이 아니라 <code>prototype</code>을 사용한다. 
+
+```javascript
+// const car = {
+//   wheels: 4,
+//   drive() {
+//     console.log('drive...');
+//   }
+// }
+
+const Bmw = function (color) {
+  this.color = color;
+}
+
+Bmw.prototype.wheels = 4; 
+Bmw.prototype.drive = function () {
+  console.log("drive");
+}
+
+const x5 = new Bmw("red");
+const z4 = new Bmw("blue");
+
+// x5.__proto__ = car;
+// z4.__proto__ = car;
+```
