@@ -90,6 +90,7 @@
   - [esModule과 CommonJS (CJS)에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/blob/master/javascript/README.md#esmodule%EA%B3%BC-commonjs-cjs%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
   - [불변성을 유지하는 방법은?](https://github.com/in-ch/tech-inverview-study/blob/master/javascript/README.md#esmodule%EA%B3%BC-commonjs-cjs%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
   - [상속 및 prototype에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/blob/master/javascript/README.md#%EC%83%81%EC%86%8D-%EB%B0%8F-prototype%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
+  - [렉시컬 스코프에 대해서 설명해주세요.](https://github.com/in-ch/tech-inverview-study/tree/master/javascript#%EB%A0%89%EC%8B%9C%EC%BB%AC-%EC%8A%A4%EC%BD%94%ED%94%84%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94)
 
 </details>
 
@@ -147,3 +148,6 @@
 - 23년 9월 26일 (o)
 - 23년 9월 27일 (o)
 - 23년 9월 28일 (x) - 추석
+- 23년 9월 29일 (x) - 추석
+- 23년 9월 30일 (x) - 주말
+- 23년 10월 1일 (x) - 주말
