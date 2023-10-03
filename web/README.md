@@ -205,3 +205,25 @@ instance.get('/data')
 
 8. Dictionary Attack
 하나만 걸려라 공격 -> 데이터베이스에 많은 문자열을 막 삽입해서 비밀번호를 알아내는 방법이다. 
+
+
+# JWT란?
+
+JWT(JSON Web Token)는 하나의 인터넷 표준 인증 방식. 기본적인 구조는 Cookie와 다르지 않지만 다른 점은 JWT는 서명된 토큰이라 것.
+
+### JWT의 구조
+xxxxx.yyyyy.zzzzz   ⇒ 점(.)으로 구분되는 3가지 구성요소가 있고 차례로
+- Header (xxxxx)
+    - 토큰의 타입, 서명 생성에 사용된 알고리즘을 저장.
+- Payload (yyyyy)
+    - Claim이라는 사용자에 대한 or 토큰에 대한 property를 key-value 형태로 저장.
+    - key는 세 글자. 예) iss(Issuer), sub(Subject), aud(Audience), exp(Expiration Time)
+    - 민감한 정보는 담지 않음.
+- Signature (zzzzz)
+    - 암호화된 서명 정보.
+    - 서버에 있는 개인키로만 암호화를 풀 수 있다.
+
+### 쿠키와 세션에서 보완된 장점
+세션 저장소와 같은 별도의 인증 저장소가 ‘필수’가 아니다.
+세션과 다르게 클라이언트의 상태를 서버가 저장해두지 않아도 된다.
+signature를 암호화해서 보안성이 높다.
