@@ -857,4 +857,10 @@ const z4 = new Bmw("blue");
 3. 전역 스코프: 전역 스코프는 모든 함수의 외부에 존재하는 스코프로, 전역 변수는 어디서든 참조할 수 있습니다.
 4. 함수 스코프 체인: 렉시컬 스코프는 함수의 중첩과 스코프 체인을 형성합니다. 함수가 변수를 찾을 때, 먼저 자신의 스코프에서 검색하고, 그 다음으로 외부 함수의 스코프를 찾습니다. 이런 식으로 계속 상위 스코프를 찾아나가는 구조입니다. 
 
+# 자바스크립트의 동작 원리에 대해서 설명해주세요.
+![이벤트_루프.gif](https://github.com/Esoolgnah/Frontend-Interview-Questions/blob/main/Images/important-4/javascript-eventloop.gif)
 
+1. 실행 컨텍스트가 실행되고 해당 작업은 <code>콜스택(Call Stack)</code>에 쌓이게 됩니다. 
+   여기서 콜스택은 실행된 코드의 환경을 저장하는 자료구조로, 함수 호출 시 이곳에 저장됩니다. LIFO 방식입니다.
+2. 시간이 소요되는 작업들은 (예를 들어 setTimeout, 이벤트, HTTP 요청 메서드, 비동기 함수 등)은 WebAPI에서 대기하다가 WebAPI에 의해 콜백큐(Callback Queue)로 보내집니다. -> FIFO 방식 
+3. Call Stack이 비워져 있을때만 Callback Queue에 저장되어 있던 작업들이 Call Stack으로 보내지는데 이러한 역할을 수행하는 것을 <code>이벤트 루프</code>라고 합니다.
