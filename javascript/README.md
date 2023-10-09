@@ -349,7 +349,7 @@ divs.forEach((div) => {
 
 ### 이벤트 버블링이 존재하는 이유
 
-이벤트 전파 및 위임: DOM 트리의 요소들은 중첩된 구조를 가질 수 있습니다. 이때 이벤트 버블링은 이벤트가 하위 요소에서 상위 요소로 전파되는 메커니즘을 제공하여, 중복된 이벤트 핸들러를 등록하지 않고도 상위 요소에서 이벤트를 처리할 수 있도록 도와줍니다. 이것을 이벤트 위임(Event Delegation)이라고 하며, 효율적인 이벤트 관리와 메모리 사용을 돕습니다.
+이벤트 전파 및 위임: DOM 트리의 요소들은 중첩된 구조를 가질 수 있습니다. 이때 이벤트 버블링은 이벤트가 하위 요소에서 상위 요소로 전파되는 메커니즘을 제공하여, 중복된 이벤트 핸들러, 리스너를 등록하지 않고도 상위 요소에서 이벤트를 처리할 수 있도록 도와줍니다. 이것을 이벤트 위임(Event Delegation)이라고 하며, 효율적인 이벤트 관리와 메모리 사용을 돕습니다.
 
 - 캡처링은?
 
@@ -865,21 +865,68 @@ const z4 = new Bmw("blue");
 2. 시간이 소요되는 작업들은 (예를 들어 setTimeout, 이벤트, HTTP 요청 메서드, 비동기 함수 등)은 WebAPI에서 대기하다가 WebAPI에 의해 콜백큐(Callback Queue)로 보내집니다. -> FIFO 방식 
 3. Call Stack이 비워져 있을때만 Callback Queue에 저장되어 있던 작업들이 Call Stack으로 보내지는데 이러한 역할을 수행하는 것을 <code>이벤트 루프</code>라고 합니다.
 
-# CSR과 SSR의 차이점을 알려주세요.
-싱글 페이지 렌더링이란? SPA는 최초 한번 페이지 전체를 로딩한 후부터 데이터만 변경해서 사용할 수 있는 웹 애플리케이션이다. -> 하나의 페이지에서 실행된다.
-종류로는 CSR과 SSR이 있다. 
+# javascript의 반복문의 종류에 대해서 설명해주세요.
+1. for문 
+   일반적인 for문 
 
-### CSR 클라이언트 사이드 렌더링 
-최초 로드시 필요한 파일들을 전부 받고, 사용자의 인터렉션에 따라 클라이언트단에서 받아와 렌더링을 해주는 방식 
-기본 틀만 받고, 브라우저에서 동적으로 DOM을 그린다. 
-단점으로는 
-1. 초반에 뼈대만 다운받기 때문에, SEO에 취약하다. 또한 초기 화면의 렌더링 속도가 느리다. 하지만 이후의 렌더링 속도가 빠르게 일어난다. 
-2. SEO에 취약하다. (브라우저가 서버에서 받아오는 최초의 HTML은 고작 <div id="root"></div> 태그 하나이기 때문에 검색엔진이 사이트의 내용을 파악하기 어렵다.)
+2. forEach 문 
+   오로지 배열에서만 사용 가능하다. (map, set 에서도 지원)
+   배열의 요소들을 반복하여 작업을 수행할 수 있다. 
+   forEach 구문의 인자로 callback 함수를 등록할 수 있고, 배열의 각 요소들이 반복될 때 이 callback 함수가 호출된다. -> index도 인자에 포함이 되어서 인덱스 값에도 접근이 가능하다. 
+   ```javascript
+   var items = ['item1', 'item2', 'item3'];
 
-### SSR 서버 사이드 렌더링
-서버에서 새로운 페이지에 대한 요청을 하는 방식으로 서버로 부터 이미 만들어진 DOM을 받게 됩니다.
-따라서 SEO에 최적화되어 있습니다.
+   items.forEach(function(item, index) {
+      console.log(item, index);
+   });
+   ```
 
-단점으로는
-1. 매 렌더링마다 서버를 거침으로써 속도가 CSR에 비해 느립니다. 단 초기 화면의 렌더링 속도는 빠릅니다.
-2. 페이지 깜빡임 현상 -> 화면 전환 시 흰 화면이 보이는 깜빡임 현상이 CSR에 비해 도드라지게 보여진다. 
+3. for ... in 반복문 
+   for in 반복문은 객체의 속성들을 반복하여 작업을 수행할 수 있다. (모든 객체에서 사용이 가능하다.) 
+   다만 key값에만 접근이 가능하고 value 값에 접근하는 방법은 제공하지 않는다. 
+   왜냐하면 자바스크립트에서 객체 속성들은 내부적으로 사용하는 숨겨진 속성들을 가지고 있다. 그 중 하나가 [[Enumerable]]이며, for in 구문은 이 값이 true로 셋팅되어 속성들만 반복할 수 있다. 
+   value를 쓰고 싶다면 다음과 같이 해야 한다.
+   ```javascript
+   var obj = {
+        a: 1, 
+        b: 2, 
+        c: 3
+   };
+
+   for (var prop in obj) {
+        console.log(prop, obj[prop]); // a 1, b 2, c 3
+   }
+   ```
+   ```javascript
+   혹은 Object.keys, Object.values, Object.entries를 사용 가능하다.
+   const myObject = { a: 1, b: 2, c: 3 };
+   const keys = Object.keys(myObject);
+   const values = Object.values(myObject);
+   const entries = Object.entries(myObject);
+
+   for (const key of keys) {
+     console.log(key, myObject[key]);
+   }
+
+   for (const value of values) {
+     console.log(value);
+   }
+
+   for (const [key, value] of entries) {
+     console.log(key, value);
+   }
+   ```
+
+4. for .. of 반복문 
+   for .. of 구문을 사용하기 위해선 컬렉션 객체가 [Symbol.iterator] 속성을 가지고 있어야만 한다. 
+   컬렉션 객체란 데이터를 저장하고 관리하기 위한 다양한 자료 구조를 제공하는 객체나 클래스를 가르킨다. (배열, 객체, 맵, 셋 등)
+   ```javascript
+   var iterable = [10, 20, 30];
+
+   for (var value of iterable) {
+    console.log(value); // 10, 20, 30
+   }
+   ```
+### for in 반복문과 for of 반복문의 차이점 
+- for in 반복문: 객체의 모든 열거 가능한 속성에 대해 반복
+- for of 반복문: [Symbol.iterator] 속성을 가지는 컬렉션 전용
