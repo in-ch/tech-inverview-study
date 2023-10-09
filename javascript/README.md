@@ -421,8 +421,8 @@ divs.forEach((div) => {
 
 # 데이터 바인딩에 대해서 설명해주세요.
 
-바인딩이란 화면상에 보여지는 데이터(View)와 브라우저 메모리에 있는 데이터(MOdel)을 묶어서(Binding) 서로 간의 데이터를 동기화하는 것이다. 예를 들어, HTML에서 서버 혹은 스크립트 상에서 받아온 데이터를 화면상에 그려주고 있다고 가정했을 때, 해당 값이 변경 될 경우 다시 HTML 상에서 데이터(값)를 변경된 값에 따라 맞춰주는 동작을 '데이터 바인딩'이라고 한다. 데이터 바인딩의 종류는 두가지가 있다.
-첫번째는 Javascript(Model)에서 HTML(View)로 한 방향으로만 데이터를 동기화하는 단방향 바인딩이다. 이는 부모 컴포넌트에서 자식 컴포넌트로만 데이터가 전달되는 구조로, SPA Framework는 대표적으로 리액트가 그 예시이다.
+바인딩이란 화면상에 보여지는 데이터(View)와 브라우저 메모리에 있는 데이터(Model)을 묶어서(Binding) 서로 간의 데이터를 동기화하는 것이다. 예를 들어, HTML에서 서버 혹은 스크립트 상에서 받아온 데이터를 화면상에 그려주고 있다고 가정했을 때, 해당 값이 변경 될 경우 다시 HTML 상에서 데이터(값)를 변경된 값에 따라 맞춰주는 동작을 '데이터 바인딩'이라고 한다. 데이터 바인딩의 종류는 두가지가 있다.
+첫번째는 Javascript(Model)에서 HTML(View)로 한 방향으로만 데이터를 동기화하는 단방향 바인딩이다. 
 두번째는 Javascript와 HTML 사이에 View Model이 존재하여 하나로 묶여 둘 중 하나만 변경되어도 함께 변경되는 양방향 바인딩이다. 또한 부모 컴포넌트에서 자식 컴포넌트로는 Props를 통해 데이터를 전달하고, 자식 컴포넌트에서 부모 컴포넌트로는 Emit Event를 통해서 데이터를 전달하는 구조이다. 대표적으로 Vue.js와 Angular가 있다.
 
 # React hooks에 대한 장점을 설명해주세요.
@@ -744,8 +744,8 @@ JavaScript는 `싱글 스레드`이면서 `논 블록킹` 언어입니다. �
     - `ESM`: ESM은 기본적으로 비동기적으로 모듈을 가져오며, `import`문은 비동기 처리를 수행합니다. 이것은 브라우저에서도 동일하게 적용됩니다.
     - `CJS`: CJS는 동기적으로 모듈을 가져오는 경향이 있으며, `require` 문은 동기적으로 실행됩니다. Node.js에서는 기본적으로 동기식입니다.
 3. 정적 vs. 동적:
-    - `ESM`: ESM은 정적 모듈 시스템입니다. 즉, 모듈 가져오기 및 내보내기는 코드의 맨 위에 있어야 하며, 런타임 동안 조건부 또는 동적으로 수행할 수 없습니다.
-    - `CJS`: CJS는 동적으로 모듈을 가져오고 내보내는 것이 가능합니다. 이는 런타임 조건에 따라 다른 모듈을 동적으로 로드해야 하는 경우에 유용합니다.
+    - `ESM`: ESM은 정적 모듈 시스템입니다. 즉, 모듈 가져오기 및 내보내기는 코드의 맨 위에 있어야 하며, 런타임 동안 조건부 또는 동적으로 수행할 수 없습니다. (무조건 상단에 import를 실행시켜야 한다.)
+    - `CJS`: CJS는 동적으로 모듈을 가져오고 내보내는 것이 가능합니다. 이는 런타임 조건에 따라 다른 모듈을 동적으로 로드해야 하는 경우에 유용합니다. (어느 지점에서도 required 가능하다.)
 4. Named vs. Default Export:
     - `ESM`: ESM은 명시적으로 명명된 내보내기 (named exports)를 지원합니다. 여러 개의 내보내기를 가질 수 있으며, `import { name } from 'module'`과 같이 가져옵니다.
     - `CJS`: CJS는 주로 `module.exports`를 사용하여 모듈을 내보내므로 주로 하나의 기본 내보내기 (default export)만을 가집니다. 이는 `const module = require('module')`과 같이 가져옵니다.
@@ -897,8 +897,8 @@ const z4 = new Bmw("blue");
         console.log(prop, obj[prop]); // a 1, b 2, c 3
    }
    ```
-   ```javascript
    혹은 Object.keys, Object.values, Object.entries를 사용 가능하다.
+   ```javascript
    const myObject = { a: 1, b: 2, c: 3 };
    const keys = Object.keys(myObject);
    const values = Object.values(myObject);
@@ -927,6 +927,10 @@ const z4 = new Bmw("blue");
     console.log(value); // 10, 20, 30
    }
    ```
+
+5. 기타 
+    map, reduce 등 등 
+
 ### for in 반복문과 for of 반복문의 차이점 
 - for in 반복문: 객체의 모든 열거 가능한 속성에 대해 반복
 - for of 반복문: [Symbol.iterator] 속성을 가지는 컬렉션 전용
