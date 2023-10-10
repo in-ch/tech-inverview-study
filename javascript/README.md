@@ -934,3 +934,62 @@ const z4 = new Bmw("blue");
 ### for in 반복문과 for of 반복문의 차이점 
 - for in 반복문: 객체의 모든 열거 가능한 속성에 대해 반복
 - for of 반복문: [Symbol.iterator] 속성을 가지는 컬렉션 전용
+
+
+# Map과 Set에 대해서 설명해주세요.
+JavaScript에서 Map과 Set은 둘 다 데이터를 저장하는 데 사용되는 자료 구조이다. 
+
+### Set:
+
+- `Set`은 중복을 허용하지 않는 값들의 컬렉션입니다.
+- 유일한 값을 저장할 때 유용합니다. 예를 들어, 중복된 값을 제거하고 싶을 때 사용할 수 있습니다.
+- `Set`은 값을 추가하거나 삭제할 수 있지만, 값을 기준으로 저장하며, 특정 키-값 쌍을 관리하지는 않습니다.
+```javascript
+let uniqueNumbers = new Set();
+uniqueNumbers.add(1);
+uniqueNumbers.add(2);
+uniqueNumbers.add(1); // 중복된 값은 무시됨
+
+console.log(uniqueNumbers); // 출력: Set { 1, 2 }
+```
+
+### Map:
+
+- `Map`은 키-값 쌍을 저장하는 컬렉션입니다.
+- 특정 키에 연결된 값을 찾을 때 유용합니다. 예를 들어, 객체와 비슷하지만 객체의 키로 문자열과 심볼만 사용할 수 있는 반면, `Map`은 어떠한 값도 키로 사용할 수 있습니다.
+- 순서를 유지하므로 원하는 순서대로 요소를 반복할 수 있습니다.
+```javascript
+let userRoles = new Map();
+userRoles.set("john", "admin");
+userRoles.set("jane", "moderator");
+
+console.log(userRoles.get("john")); // 출력: admin
+console.log(userRoles.has("jane")); // 출력: true
+```
+
+### 어느 경우에 써야 할까?
+- Set을 사용해야 하는 경우:
+    - 중복된 값을 허용하지 않고 유일한 값들의 컬렉션을 유지하려 할 때
+    - 값들의 순서가 중요하지 않은 경우
+- Map을 사용해야 하는 경우:
+    - 특정 키에 연결된 값을 저장하고 이를 검색하고 싶을 때
+    - 데이터를 삽입한 순서를 유지하고 싶은 경우 (물론 es6부터는 obj도 순서를 보장하나, 좀 더 명시적으로 순서를 보장하기 위해서 map이 사용된다. )
+    - 객체 키 이외의 값을 키로 사용하고 싶은 경우 (obj는 심볼과 문자열만이 키값으로 사용할 수 있다. map은 boolean 값도 키값으로 사용할 수 있다. )
+        
+        ex) 
+        
+        ```javascript
+        // 심볼 생성
+        const mySymbol = Symbol('description');
+        
+        // 객체 생성 및 심볼을 속성의 키로 사용
+        let obj = {
+            name: 'John',
+            [mySymbol]: 'This is a symbol property'
+        };
+        
+        console.log(obj.name);         // 출력: John
+        console.log(obj[mySymbol]);    // 출력: This is a symbol property
+        ```
+        
+        여기서 심볼이란 JavaScript의 원시 데이터 타입 중 하나로, 유일성이 보장된 값을 생성할 때 사용된다.
