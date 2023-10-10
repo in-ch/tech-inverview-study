@@ -755,6 +755,20 @@ JavaScript는 `싱글 스레드`이면서 `논 블록킹` 언어입니다. �
 
 이러한 차이점을 고려하여 프로젝트의 요구 사항에 따라 `ES Modules` 또는 `CommonJS` 중 하나를 선택할 수 있습니다. Node.js의 최신 버전에서는 두 가지 모듈 형식을 모두 지원하므로 적절한 모듈 시스템을 선택할 수 있습니다.
 
+### import와 require의 차이
+
+```javascript
+/* CommonJS */
+const name = require('./module.js');
+
+/* ES6 */
+import name from './module.js'
+```
+- require은 어느 지점에서나 호출할 수 있지만 import는 파일의 시작 부분에서 실행된다.
+- 하나의 프로그램에서 두 키워드를 동시에 사용할 수 없다.
+- 일반적으로 import는 사용자가 필요한 모듈 부분만 선택하고 로드 할 수 있어 더 선호된다. 또한 require보다 성능이 우수하면 메모리를 절약한다.
+
+
 # 불변성을 유지하는 방법은?
 
 불변성이란, 객체가 생성된 이후 그 상태를 변경할 수 없는 것. 객체 프로퍼티를 변경할 수 없는 상태.
@@ -934,7 +948,6 @@ const z4 = new Bmw("blue");
 ### for in 반복문과 for of 반복문의 차이점 
 - for in 반복문: 객체의 모든 열거 가능한 속성에 대해 반복
 - for of 반복문: [Symbol.iterator] 속성을 가지는 컬렉션 전용
-
 
 # Map과 Set에 대해서 설명해주세요.
 JavaScript에서 Map과 Set은 둘 다 데이터를 저장하는 데 사용되는 자료 구조이다. 
