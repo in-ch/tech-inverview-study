@@ -1054,3 +1054,69 @@ setState 함수 호출은 비동기적으로 일어난다.
 리렌더링이 발생해야 업데이트된 상태 값이 가상돔 트리에 반영된다.
 
 따라서 callBack 함수로 따로 인자값으로 지정하거나 async await를 쓸 수도 없으니 useEffect를 써야한다. 
+
+# 제어 컴포넌트 (controlled component) & 비제어 컴포넌트 (uncontrolled component)
+
+1. 제어 컴포넌트
+   제어 컴포넌트는 사용자의 입력을 기반으로 자신의 state를 관리하고 업데이트합니다. React에서는 변경할 수 있는 state가 일반적으로 컴포넌트의 state 속성에 유지되며 setState()에 의해 업데이트됩니다.
+   이러한 방식으로 React에 의해 값이 제어되는 입력 폼 엘리먼트를 “제어 컴포넌트 (controlled component)“라고 합니다.
+
+ex)
+
+```typescript
+export default function App() {
+  const [input, setInput] = useState('');
+  const onChange = (e) => {
+    setInput(e.target.value);
+  };
+
+  return (
+    <div className="App">
+      <input onChange={onChange} />
+    </div>
+  );
+}
+```
+
+보다시피 사용자의 입력을 받는 컴포넌트에 event 객체를 이용해 setState()로 값을 저장하는 방식을 제어 컴포넌트 방식이라 할 수 있다. -> React에 의해 값이 제어되므로 제어 컴포넌트
+
+2. 비제어 컴포펀트
+   우리는 바닐라 자바스크립트를 사용할 때 폼을 제출할때 (submit button)을 클릭할 때 요소 내부의 값을 얻어왔다. 비제어 컴포넌트 또한 이와 유사한 방식으로 사용된다.
+   비제어 컴포넌트 방식을 사용할 땐, 제어 컴포넌트 방식에서 사용한 setState()를 쓰지 않고 ref를 사용해서 값을 얻는다.
+
+ex)
+
+```typescript
+export default function App() {
+  const inputRef = useRef(); // ref 사용
+  const onClick = () => {
+    console.log(inputRef.current.value);
+  };
+
+  return (
+    <div className="App">
+      <input ref={inputRef} />
+      <button type="submit" onClick={onClick}>
+        전송
+      </button>
+    </div>
+  );
+}
+```
+
+제어 컴포넌트의 경우 사용자가 입력을 하는 액션을 취할때마다 리렌더링을 발생시키는 반면, 비제어 컴포넌트는 사용자가 직접 트리거 하기 전까지는 리렌더링을 발생시키지도 않고 값을 동기화 시키지도 않는다.
+
+### 왜 ref는 리렌더링을 발생시키지 않을까?
+
+useRef() 는 heap영역에 저장되는 일반적인 자바스크립트 객체이다.
+매번 렌더링할 때 동일한 객체를 제공한다. heap에 저장되어 있기 때문에 어플리케이션이 종료되거나 가비지 컬렉팅될 때 까지, 참조할때마다 같은 메모리 값을 가진다고 할 수 있다.
+값이 변경되어도 리렌더링이 되지 않는다. 같은 메모리 주소를 갖고있기 때문에 자바스크립트의 === 연산이 항상 true 를 반환한다. 즉 변경사항을 감지할 수 없어서 리렌더링을 하지 않는다는 뜻이다.
+
+| 기능                                   | 제어 컴포넌트 | 비제어 컴포넌트 |
+| -------------------------------------- | ------------- | --------------- |
+| 일회성 정보 검색 (예: 제출)            | O             | O               |
+| 제출 시 값 검증                        | O             | O               |
+| 실시간으로 필드값의 유효성 검사        | O             | X               |
+| 조건부로 제출 버튼 비활성화 (disabled) | O             | X               |
+| 실시간으로 입력 형식 적용하기          | O             | X               |
+| 동적 입력                              | O             | X               |
