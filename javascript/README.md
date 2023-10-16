@@ -1120,3 +1120,154 @@ useRef() 는 heap영역에 저장되는 일반적인 자바스크립트 객체�
 | 조건부로 제출 버튼 비활성화 (disabled) | O             | X               |
 | 실시간으로 입력 형식 적용하기          | O             | X               |
 | 동적 입력                              | O             | X               |
+
+# ReactNode vs JSX.Element vs ReactElement 
+<code>ReactNode</code>는 <code>ReactElement</code>를 비롯하여 대부분의 자바스크립트 데이터 타입을 아우르는 범용적인 타입이다. 따라서 어떤 props을 받을 건데, 구체적으로 어떤 타입이 올지 알 수 없거나, 어떠한 타입도 모두 받고 싶다면 <code>ReactNode</code>로 지정해주는 것이 좋다.
+
+```jsx
+type ReactNode =
+  | ReactElement
+  | string
+  | number
+  | ReactFragment
+  | ReactPortal
+  | boolean
+  | null
+  | undefined
+
+type ReactFragment = Iterable<ReactNode>
+```
+
+예제) 
+```jsx
+type BlogProps = {
+  profile: React.ReactNode
+  introduction: JSX.Element
+}
+
+const Blog = ({ profile, introduction }: BlogProps) => {
+  return (
+    <div>
+      {profile}
+      {introduction}
+    </div>
+  )
+}
+
+export default Blog
+
+const App = () => {
+  return (
+    <Blog
+      profile={'howdy-mj'}
+      introduction={'howdy-mj'} // TS2322: Type 'string' is not assignable to type 'Element'.
+    />
+  )
+}
+
+export default App
+```
+
+여기서 profile에는 string을 선언할 수 있지만, introduction은 string이기 때문에 Element 타입에 선언할 수 없다는 에러가 뜬다.
+
+여기서 ReactNode에는 ReactElement만 있다. (JSX.element 가 없다.) 
+둘다 <code>React.createElement()</code>의 리턴값인데 무슨 차이점이 있을까 
+
+### React.createElement() 
+```jsx
+const HowdyMj = () => {
+  return <div>howdy-mj</div>
+}
+```
+위와 같이 JSX로 작성된 코드를 자바스크립트로 변환하면 아래와 같이 변한다.
+```jsx
+const HowdyMj = () => {
+  return React.createElement('div', null, 'howdy-mj')
+}
+```
+
+### ReactElement
+<code>ReactElement</code>는 ReactElementType.js에서 flow로 정의되어 있어 쉽게 볼 수 있다.
+
+```jsx
+export type ReactElement = {|
+  $$typeof: any,
+  type: any,
+  key: any,
+  ref: any,
+  props: any,
+  // ReactFiber
+  _owner: any,
+
+  // __DEV__
+  _store: { validated: boolean, ... },
+  _self: React$Element<any>,
+  _shadowChildren: any,
+  _source: Source,
+}
+```
+
+위에서 이미 본 익숙한 형태의 타입을 볼 수 있다.
+
+```jsx
+interface ReactElement<
+  P = any,
+  T extends string | JSXElementConstructor<any> =
+    | string
+    | JSXElementConstructor<any>
+> {
+  type: T
+  props: P
+  key: Key | null
+}
+
+type JSXElementConstructor<P> =
+  | ((props: P) => ReactElement<any, any> | null)
+  | (new (props: P) => Component<any, any>)
+
+type ComponentType<P = {}> = ComponentClass<P> | FunctionComponent<P>
+
+type Key = string | number
+따라서 type이 받는 T 제너릭은 해당 HTML 태그의 타입을 받고, props는 그 외의 컴포넌트가 갖고 있는 속성을 받는다.
+```
+
+### JSX.Element
+<code>JSX.Element</code>는 ReactElement의 타입과 props를 모두 any로 받아 확장한 인터페이스다. 따라서 더 범용적으로 사용할 수 있다.
+
+```jsx
+// Global
+declare global {
+  namespace JSX {
+    interface Element extends React.ReactElement<any, any> {}
+  }
+}
+
+// React Elements
+declare namespace React {
+  // ... 생략
+}
+```
+또한 React 관련 타입은 모두 React의 namespace에서 선언되었는데, JSX는 global namespace로 선언되어 있다. 따라서 React 내에서 JSX를 import하지 않아도 바로 사용이 가능하다.
+
+### 정리 
+1) ReactNode:
+
+<code>ReactNode</code>은 React 구성 요소(컴포넌트)의 자식 요소(또는 자식 요소의 배열)를 나타내는 타입입니다.
+주로 함수 컴포넌트나 클래스 컴포넌트에서 컴포넌트의 자식을 표현할 때 사용
+<code>ReactNode</code>은 JSX에서 {...} 중괄호로 둘러싸인 자식 엘리먼트의 배열을 포함할 수 있으며, 이 배열은 컴포넌트 내에서 렌더링된다. 
+
+2) JSX.Element:
+
+<code>JSX.Element</code>는 React 구성 요소가 반환하는 React 엘리먼트(React 컴포넌트의 인스턴스)를 나타난다.
+주로 React 컴포넌트 내에서 UI 엘리먼트를 생성하고 반환하는 데 사용된다. 
+<code>JSX.Element</code>는 컴포넌트에서 반환된 JSX 코드 블록을 나타낸다.
+
+3) ReactElement:
+
+<code>ReactElement</code>는 React 엘리먼트의 타입과 속성(props)을 나타내는 객체
+주로 React 엘리먼트를 프로그래밍 방식으로 생성하고 조작할 때 사용
+<code>React.createElement()</code> 함수를 사용하여 <code>ReactElement</code>를 생성할 수 있다.
+
+```jsx
+const element = React.createElement('div', { className: 'my-class' }, 'Hello, World!');
+```
