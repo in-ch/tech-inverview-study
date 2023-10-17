@@ -259,3 +259,37 @@ instance.get('/data')
 
 단점으로는
 1. 매 렌더링마다 서버를 거침으로써 속도가 CSR에 비해 느립니다.
+
+
+# 여러 언어로 되어 있는 콘텐츠의 페이지를 어떻게 제공하나요?
+
+- 여러 언어로 제공되는 페이지를 제공하기 위해선 페이지 내의 내용이 하나의 일관된 언어로 표시되어야 한다. 브라우저가 HTTP 요청을 서버에 보내면, 대게 Accept-Language와 같은 기본 언어에 대한 설정 정보를 보낸다. 서버는 이 정보를 확인하고 해당 언어에 맞는 문서를 반환한다. 이 때 태그의 lang 속성을 선언해줘야 한다.
+- 서버는 일반적으로 백엔드 프레임워크의 도움을 받아, 특정 언어로 HTML 마크업에서 YML 또는 JSON 형식의 특정 언어에 대한 placeholder와 내용을 포함하여 HTML 페이지를 동적 생성한다.
+
+
+# URI, URL, URN이란?
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/a03e70e2-9f82-4a7b-b29e-e98f66f3f389/fefa36a6-1106-42a4-936f-8ced82163aa1/Untitled.png)
+
+### URI
+
+- URI(Uniform Resource Identifier) = 통합 자원 식별자
+- 즉, 인터넷 상의 **“자원 자체”**를 식별하는 고유한 문자열 시퀀스이다.
+- URI의 하위 개념으로 URL과 URN이 있다.
+- URL도 아니고 URN도 아니면 그냥 URI가 되는 것이다.
+
+### URL
+
+- URL(Uniform Resource Locator) = 웹 사이트 주소 + 네트워크 상의 자원
+- URL은 네트워크 상에서 리소스(웹 페이지, 이미지, 동영상 등의 파일)의 위치를 나타내기 위한 규약이다.
+- URL은 HTTP 프로토콜 뿐만 아니라 FTP, SMTP 등 다른 프로토콜에서도 사용할 수 있다. (즉, 주소 뿐 아니라 프로토콜도 알아야 접속이 된다.)
+
+### URN
+
+- URN(Uniform Resource Name)
+- URN은 URI의 표준 포맷 중 하나로, 이름으로 리소스를 특정하는 URI이다.
+- http와 같은 프로토콜을 제외하고 리소스의 name을 가리키는데 사용된다.
+- URN에는 리소스 접근방법과, 웹 상의 위치가 표기되지 않는다. (웹 문서의 물리적인 위치와 상관 없이 웹 문서 자체를 의미)
+- 실제 자원을 찾기 위해서는 URN을 URL로 변환하여 이용한다.
+
+![image](https://github.com/bumsly/tech-inverview-study/assets/65000254/1882d766-dd7a-48a6-a6bf-3ee50385e52d)
