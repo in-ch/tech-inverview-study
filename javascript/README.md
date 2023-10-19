@@ -1309,3 +1309,38 @@ import { Component1Component, Component2Component, Service1Service, Service2Serv
 2. 모듈 간의 의존성 오류
     
     여러 모듈이 상호 의존성을 가지고 있을 때, 인덱스 파일에서 모듈을 순환 참조할 수 있다. → 의존성 오류를 발생시킬 수 있다.
+
+# 서버 컴포넌트 
+서버 컴포넌트를 사용하면 서버에서 렌더링 및 선택적으로 캐시할 수 있는 UI를 작성할 수 있다. 
+Next.js에서는 렌더링 작업을 부분별로 분할하여 <code>스트리밍</code> 및 <code>부분 렌더링</code>을 가능하게 하며 총 3개의 렌더링 방법이 있다. -> 추후 서버 렌더링 전략에 대해서 정리 예정 
+
+### 서버 렌더링의 장점 
+1. 데이터 가져오기: 서버 구성 요소를 사용하면 데이터 가져오기를 데이터 소스에 가깝게 서버로 이동할 수 있다. 
+   이를 통해 렌더링에 필요한 데이터를 가져오는데 걸리는 시간과 클라이언트가 요청해야 하는 양을 줄여 성능을 향상시킬 수 있다.
+2. 보안: 토큰 및 API 키와 같은 중요한 데이터 및 로직을 클라이언트에 노출할 위험 없이 서버에 보관할 수 있다.
+3. 캐싱(Cashing): 서버에서 렌더링을 수행함으로써 결과를 캐싱하여 이후 요청 및 사용자 간에 재사용할 수 있다. -> 각 요청에 수행되는 렌더링 및 데이터 가져오기 작업의 양을 줄여 성능을 향상시키고 비용을 절감할 수 있다.
+4. 번들 크기: 서버 구성 요소를 사용하면 이전에 서버의 클라이언트 자바스크립트 번들 크기에 영향을 주었던 큰 의존성을 유지할 수 있다. 이는 클라이언트가 서버 구성 요소용 자바스크립트를 다운로드, 구문 분석 및 실행할 필요가 없기 때문에 인터넷 속도가 느리거나 덜 강력한 장치를 사용장게 유용하다.
+5. 초기 페이지 로드 및 FCP(First Contentful Paint): 서버에서 HTML을 생성하여 사용자가 페이지를 렌더링하는 데 필요한 자바스크립트를 다운로드, 구문 분석 및 싱핼할 때까지 기다리지 않고 페이지를 바로 볼 수 있다.
+6. 검색 엔진 최적화 및 소셜 네트워크 공유성: 렌더링된 HTML은 검색 엔진 봇이 페이지를 인덱싱하고 소셜 네트워크 봇이 페이지에 대한 소셜 카드 미리보기를 생성하는 데 사용할 수 있다.
+7. 스트리밍: 서버 컴포넌트를 사용하면 렌더링 작업을 청크로 나누어 준비가 되면 클라이언트에 스트리밍할 수 있다. 이렇게 하면 전체 페이지가 서버에서 렌더링될 때까지 기다릴 필요없이 페이지의 일부를 더 일찍 볼 수 있다. 
+
+### 어떻게 서버 컴포넌트는 렌더링되는 가? 
+서버에서 Next.js는 React의 API를 사용하여 렌더링을 조정한다.
+렌더링 작업은 <code>개별 경로 세그먼트</code>와 <code>Suspense Boundaries</code>에 의해 <code>chunks</code>로 나뉘어 진다. 
+
+각 <code>chunks</code>는 두 단계로 렌더링된다. 
+
+<code>React</code>는 서버 컴포넌트를 <code>RSC Payload(React Server Component Payload)</code>라는 특수한 데이터 형식으로 만든다. 
+<code>Next.js</code>는 <code>RSC Payload</code> 및 <code>Client Component Javascript</code> 명령을 사용하여 서버에서 HTML을 렌더링한다. 
+
+그런 다음 클라이언트에서 이걸 받아서 <code>HTML</code>은 경로의 빠른 (상호작용 안되는) 미리보기를 사용되며, 초기 페이지 로드로 사용된다. 
+<code>RSC Payload</code>는 <code>Client</code>와 <code>Server Component</code> tree를 재조정하며, DOM을 업데이트한다. 
+<code>Javascript instructions</code>는 Client component에 수화(hydration)되며 이제 어플리케이션을 상호작용될 수 있게 한다. 
+
+### RSC(React Server Component Payload)란 먼가요??
+<code>RSC Payload</code>는 렌더링된 <code>React Server Components tree</code>의 컴펙트한 <code>binary representation</code>이다. 
+<code>Client</code>에서 <code>React</code>가 브라우저 DOM을 업데이트하는 데 사용된다.  
+- 다음과 같은 내용을 포함하고 있다. 
+1. <code>Server Components</code>의 렌더링된 결과
+2. <code>Client Components</code>의 렌더링될 위치 및 Javascript file의 참조 
+3. <code>Server Components</code>에서 <code>Client Components</code>로 전달될 Props들 
