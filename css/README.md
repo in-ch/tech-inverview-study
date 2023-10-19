@@ -91,19 +91,70 @@ ex) grid 예제
   line-height: 100px;
 }
 ```
-
 <code>grid-template-columns: 1fr 2fr 1fr; /* 1fr, 2fr, 1fr의 비율로 열을 설정 */</code>
 
-### css에서 margin과 padding에 대해 말해주세요.
+# CSS에서 margin과 padding에 대해 말해주세요.
 
 - margin: object와 화면 사이의 여백. border의 바깥쪽
 - padding: object 내의 여백. content 영역이 배경 색이나 배경 이미지를 가질 때, padding에도 영향을 미치기 때문에 content의 연장으로 볼 수 있다.
 게다가 margin은 auto와 음수값을 가질 수 있다.
 
-### CSS Reset과 CSS Normalize
+# CSS Reset과 CSS Normalize
 
 - CSS Reset
     내가 여기서 Reset은 하드 reset을 의미한다. 기존의 브라우저가 제공하는 모든 css 스타일을 없애고 margins, padding 등의 값을 0으로 설정해 아무것도 없는 상태로 만들어준다. 브라우저간의 차이를 생각할 필요없어 변수가 적고 작업속도 면에서 효율적일 수 있다. 다만 코드가 더 길어지고 업데이트가 되지 않는다.
     
 - CSS Normalize
     어느 정도 유용한 스타일들은 이용하고 브라우저 간에 상이한 스타일들을 통일시켜준다. github를 통해 지속적으로 업데이트가 돼서 안정성이 높고 버그나 브라우저 간의 차이점이 고려된다. 다만 기존 스타일이 어떻게 사용되는가에 대한 가이드가 따로 없다는 것이 단점 아닌 단점이다.
+
+# 마진 상쇄(Margin Collapsing)의 정의, 원인, 해결 방안
+
+두 개 이상의 Block요소의 상하 마진이 겹쳐질 때 한 쪽 값만 적용되는 브라우저 규칙 (더 큰 마진값으로 상쇄 되어 랜더링됨)
+
+👉 inline, inline-block, table-cell, table-caption 등의 요소는 block-level이 아님
+
+```
+예) 30px의 margin만 적용됨.
+<div>
+  <div style="margin-bottom: 30px"></div>
+  <div style="margin-top: 20px"></div>
+</div>
+```
+
+✅ Block요소의 상/하 마진이 겹칠 때
+
+- 블록 요소의 겹쳐진 두 마진을 비교했을 때, 더 큰 마진의 값으로 상쇄해 랜더링 하게 됩니다. 만약 겹쳐진 값이 동일하다면 그중 하나를 상쇄해 랜더링 하게 됩니다.
+
+✅ 비어있는 요소(height가 0)의 상/하 마진이 겹칠 때
+
+- 높이가 0 인 상태의 블록 요소일 때는 위아래를 가르는 경계선이 없으므로, 자신의 상단 마진의 값과 하단 마진의 값을 비교해 더 큰 값으로 상쇄합니다.
+- 높이가 0 인 상태 -> height / padding / border 없는 상태
+- 내부에 inline contents가 존재하지 않는 요소일 때
+
+✅ 부모 박스와 자식 박스의 상 하단의 마진이 겹칠 경우
+
+- 부모와 첫 번째 혹은 마지막 자식 사이에 inline 콘텐츠가 없거나, 박스 사이 경계에 padding / border 등의 값이 없다면 마진이 겹치게 되므로, 자식 요소의 마진이 더 크던 작던 상관없이 상쇄된 마진은 부모 박스 바깥으로만 렌더링
+
+🙈 **마진 상쇄 예외**
+
+박스가 position: absolute 된 상태
+
+박스가 float: left/right 된 상태 (단, clear 되지 않은 상태)
+
+박스가 display: flex 일 때 내부 flexbox item
+
+박스가 display: grid 일 때 내부 grid item
+
+✨ **마진 상쇄 해결법**
+
+👉 부모태그에 border, padding 적용
+
+자식태그에 border있어도 적용 안되므로 무조건 부모 태그에 border가 존재해야 됨
+
+But, 부모 자식 사이에서만 마진 상쇄가 막아지는 것이지 다른 컴포넌트와는 막아지지 않음!
+
+👉 display: inline-block을 적용
+
+부모 요소에만 inline-block을 적용할 경우 overflow: hidden 속성도 같이 부여해야 함
+
+👉 flex, grid 사용
