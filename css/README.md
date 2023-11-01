@@ -183,3 +183,39 @@ CSS와 완전히 호환되도록 새로운 구문을 도입한 CSS의 상위 호
 - 파일명 앞에 언더바(_)를 붙이면 해당 파일은 컴파일 되지 않는다.
 → style.scss만 컴파일 되도록 한다. 나머지는 내부에서 @import 형태로 작동시킨다.
 - `css`가 복잡한 언어는 아니지만 프로젝트의 크기가 커질수록 유지보수에 큰 어려움이 생긴다. 예를 들어 기존의 `CSS`는 불필요한 선택자(Selector), 연산 기능 한계, 구문(Statement)의 부재의 문제점이 있고 `SASS`와 `SCSS`는 이러한 이슈를 해소시켜줄 수 있다.
+
+# 페이지 크기가 변해도 항상 같은 비율을 유지하는 요소를 만드는 방법 
+1. padding-bottom 활용 
+```
+.ratio-container {
+    position: relative;
+    width: 100%; /* 부모 요소의 100% 폭을 가짐 */
+    padding-bottom: 75%; /* 원하는 비율에 맞게 조절 (예: 75%는 4:3 비율) */
+}
+
+.ratio-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+<div class="ratio-container">
+    <div class="ratio-content">
+        <img src="이미지의_경로" alt="이미지 설명">
+    </div>
+</div>
+```
+
+2. aspect-ratio 활용
+```
+.aspect-ratio-box {
+    aspect-ratio: 16 / 9;
+}
+
+<div class="aspect-ratio-box">
+</div>
+```
