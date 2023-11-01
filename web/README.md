@@ -10,12 +10,13 @@ MVC 패턴 (모델, 뷰, 컨트롤러) - 모델은 데이터 및 데이터를 �
 4. **Controller는 Model이 리턴한 결과를 View에 반영 (Updates)**
 5. **데이터가 반영된 View는 사용자에게 보여짐 (Sees)**
 
-![image](https://github.com/bumsly/tech-inverview-study/assets/65000254/dfc3de5e-c741-45d0-bb00-cc4f6bdba3d4)
+<img src="https://github.com/bumsly/tech-inverview-study/assets/65000254/dfc3de5e-c741-45d0-bb00-cc4f6bdba3d4"  width="500"/>
 
 MVVM 패턴 (모델, 뷰, 뷰모델) - 모델과 뷰는 MVC와 동일하다. 뷰모델은 뷰를 표현하기 위해 만든 모델이다. 또 뷰를 나타내기 위해 데이터 처리를 하는 부분이다. 액션이 뷰를 통해 들어오면, 뷰 모델에 액션을 전달한다. 뷰 모델은 모델에게 데이터를 요청하고, 모델은 요청 받은 데이터를 뷰 모델에게 응답하고, 뷰 모델은 받은 데이터를 가공하여 저장한다. 뷰는 뷰 모델과 데이터 바인딩을 하여 화면을 그리는 동작 방식이다.
 이 패턴의 가장 큰 장점은 뷰와 뷰 모델의 의존성을 없애고, 각 부분이 독립적이라는 것이다. 단점은 뷰 모델의 설계가 쉽지 않다는 점이다. 이 패턴의 주요 목적은 로직의 분리이다. 리액트에서는 데이터와 화면 컴포넌트를 분리하는 것을 예시로 들 수 있다.
 
-![image](https://github.com/bumsly/tech-inverview-study/assets/65000254/7ee58de6-82b0-4def-abe1-0788aeac5742)
+<img src="https://github.com/bumsly/tech-inverview-study/assets/65000254/7ee58de6-82b0-4def-abe1-0788aeac5742"  width="500"/>
+
 
 # HTTP와 HTTPS의 차이점은?
 HTTP는 서버/클라이언트 모델을 따라 데이터를 주고받기 위한 프로토콜이다. HTTPS는 HTTP에 데이터 암호화가 추가된 프로토콜이다. 공개키/개인키 암호화 방식을 이용해 데이터를 암호화한다. HTTP는 암호화가 추가되지 않았기 때문에 보안에 취약한 반면, HTTPS는 안전하게 데이터를 주고받을 수 있다. 하지만 HTTPS를 이용하면 암호화/복호화 과정이 필요하기 때문에 HTTP보다 속도가 느리다(그러나 실 사용에서는 크게 차이는 없다.) HTTPS는 인증서를 발급하고 유지하는데에 추가 비용이 발생한다. 개인정보와 같은 민감한 데이터를 주고 받는다면 HTTPS를 이용해야 하지만, 단순 정보 조회 같은 사이트는 HTTP를 적용하면 된다.
@@ -165,6 +166,7 @@ RESTful API는 HTTP 프로토콜을 기반으로 하는 웹 서비스 아키텍�
 # 크로스 브라우징이란?
 
 최대한 많은 종류의 웹 브라우저에서 정상적으로 작동하는 웹페이지를 만드는 방법론 중 하나다. 지금처럼 브라우저 하나가 시장을 독점하지 않고 다양한 브라우저가 시장을 나눠가지고 있을때 개발자는 그 다양한 브라우저에 호환되는 웹페이지를 개발해야한다. 따라서 W3C에 채택된 웹표준 기술을 기본으로 제작해야한다.
+
 동일하게 보이는 것이 아니라, 동등한 수준의 정보, 기능 제공이 우선이기 때문에 제작자가 의도한 내용을 이상 없이 동작하게 하는 게 크로스 브라우징의 의미입니다.
 
 # 웹 개발 시 고려해야 할 보안 공격에 대해서 설명해주세요.
@@ -269,7 +271,7 @@ instance.get('/data')
 
 # URI, URL, URN이란?
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/a03e70e2-9f82-4a7b-b29e-e98f66f3f389/fefa36a6-1106-42a4-936f-8ced82163aa1/Untitled.png)
+<img src="https://github.com/bumsly/tech-inverview-study/assets/65000254/418d4fda-e808-43c6-8212-360f92ae56ac"  width="400"/>
 
 ### URI
 
@@ -292,7 +294,8 @@ instance.get('/data')
 - URN에는 리소스 접근방법과, 웹 상의 위치가 표기되지 않는다. (웹 문서의 물리적인 위치와 상관 없이 웹 문서 자체를 의미)
 - 실제 자원을 찾기 위해서는 URN을 URL로 변환하여 이용한다.
 
-![image](https://github.com/bumsly/tech-inverview-study/assets/65000254/1882d766-dd7a-48a6-a6bf-3ee50385e52d)
+<img src="https://github.com/bumsly/tech-inverview-study/assets/65000254/1882d766-dd7a-48a6-a6bf-3ee50385e52d"  width="500"/>
+
 
 # CWV에 대해서 설명해주세요.
 Core Web Virtal이다. 
