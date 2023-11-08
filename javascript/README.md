@@ -1014,6 +1014,7 @@ import { Component1Component, Component2Component, Service1Service, Service2Serv
 IIFE (Immediately Invoked Funtion Expression)
 
 즉시 실행 함수는 정의되자마자 즉시 실행되는 함수를 말한다. 다음과 같이 소괄호로 함수를 감싸서 문법을 사용한다.
+함수 표현식을 정의하고 즉시 호출하는 것을 의미한다. 이것은 코드를 더 모듈화하고 스코프를 제어하는 데 도움이 된다.
 
 ```jsx
 (function () {
@@ -1037,6 +1038,10 @@ IIFE (Immediately Invoked Funtion Expression)
 2. private한 변수를 만들 수 있다.
 
 즉시실행함수는 외부에서 접근 할 수 없는 자체적인 스코프를 가지게된다. 이는 클로저의 사용 목적과도 비슷하며 내부 변수를 외부로부터 private하게 보호 할 수 있다는 장점이 있다.
+
+3.  IIFE를 사용하면 전역 스코프를 오염시키지 않고 코드를 작성할 수 있으므로 다른 라이브러리와 충돌하지 않는다.
+
+4.  IIFE를 사용하여 모듈화된 코드를 작성할 수 있으며, 모듈 간의 충돌을 방지하고 코드를 정리하는 데 도움이 된다.
 
 # 자바스크립트의 배열이 실제 자료구조 배열이 아닌데 그 이유는?
 자바스크립트의 배열은 실제 자료구조의 배열과 다르게 HashMap으로 구현되어있다. 이 HashMap을 구현하기 위해서는 연결리스트로 구현하게 되는데 연결리스트에서 값을 찾기 위해서는 탐색해나가면서 값을 찾는 불상사가 발생한다. 이를 해결하기 위해서 타이핑된배열(Int8Array,Float32Array 등) 이 추가되고 있다.
