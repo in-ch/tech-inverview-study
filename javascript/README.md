@@ -81,6 +81,16 @@ fun(1, 2, 3); // error !!!
 
 화살표함수는 arguments를 정의할 수 없다고 뜬다.
 
+
+# Rest parameter란?
+
+함수 내부에서 사용하는 `arguments` 객체를 단점을 보완하기 위해 ES2015 이후로 나온 argument를 배열 안에서 사용할 수 있는 parameter이다. 유사 배열인 arguments와는 다르게 배열의 메소드를 사용할 수 있고 argument들을 묶어서 따로 사용할 수 있다. 또한 일반 parameter와 함께 쓸 때는 마지막에 남은 parameter들을 묶어주는 역할로써 사용한다.
+
+```jsx
+function 함수(first, second, ...others) { 동작 }
+```
+
+
 # 얕은 복사 vs 깊은 복사에 대해서 설명해주세요.
 
 - 얕은 복사 (Shallow Copy):
