@@ -397,3 +397,33 @@ API를 사용하는 이에게 내부적으로 어떻게 동작할지에 대한 �
 - Control Props Pattern
 - Custom Hook Pattern
 - Props Getters Pattern
+
+# forwardRef에 대해서 설명해주세요.
+함수형 컴포넌트에서 하위 component에 props로 ref를 drilling할 때 하위 컴포넌트가 일반 함수형 컴포넌트로 정의할 경우 ref가 제대로 동작 안하는 버그가 발생한다. 
+
+이는 React의 기본 원리인 <code>unidirectional data flow</code>와 관련이 있다. <code>unidirectional data flow</code>란 데이터 및 콜백 함수는 상위 컴포넌트에서 하위 컴포넌트로 전달되야 하는 것을 말한다.
+
+이럴 때는 <code>forwardRef</code>를 사용해야 한다.
+
+```tsx
+const FancyButton = React.forwardRef((props, ref) => (  <button ref={ref} className="FancyButton">    {props.children}
+  </button>));
+
+// 이제 DOM 버튼으로 ref를 직접 받을 수 있다.
+const ref = React.createRef();
+<FancyButton ref={ref}>Click me!</FancyButton>;
+```
+
+또한 ref값을 조절해야 하는 일이 생긴다면 <code>useImperativeHandle</code>을 사용할 수 있다.
+```
+function FancyInput(props, ref) {
+  const inputRef = useRef();
+  useImperativeHandle(ref, () => ({
+    focus: () => {
+      inputRef.current.focus();
+    }
+  }));
+  return <input ref={inputRef} ... />;
+}
+FancyInput = forwardRef(FancyInput);
+```
