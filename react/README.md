@@ -427,3 +427,248 @@ function FancyInput(props, ref) {
 }
 FancyInput = forwardRef(FancyInput);
 ```
+
+# React에서 SOLID 원칙을 적용할 수 있나요?
+- S: SRP, 단일 책임 원칙: 한 클래스는 하나의 책임만 가져야 한다.
+- O: OCP, 개방 폐쇄 원칙: 소프트웨어 요소는 확장에는 열려 있으나 변경에는 닫혀 있어야 한다.
+- L: LSP, 리스코프 치환 원칙: 프로그램의 객체는 프로그램의 정확성을 깨뜨리지 않으면서 하위 타입의 인스턴스로 바꿀 수 있어야 한다.
+- I: ISP, 인터페이스 분리 원칙: 특정 클라이언트를 위한 인터페이스 여러 개가 범용 인터페이스 하나보다 낫다.
+- D: DIP, 의존관계 역전 원칙: 프로그래머는 추상화에 의존해야지, 구체화에 의존하면 안된다. 의존성 주입은 이 원칙을 따르는 방법 중 하나이다. 
+
+>  일단 리액트는 객체지향언어가 아니기 때문에 위의 개념을 곧이곧대로 받아드리기는 어렵다. (애초에 자바스크립트에서는 클래스라고 생각하는 것은 프로토타입 시스템을 사용하여 시뮬레이션된 클래스 유사체일 뿐이다. 인터페이스도 존재 x ) → 그래도 SOLID와 같은 소프트웨어 설계 원칙은 언어에 구애받지 않고 추상화 수준이 높다. 
+
+### 단일 책임 원칙 (SRP)
+큰 모듈을 작은 모듈로 나누는 것, 작은 모델이 테스팅하기에도 더 쉽다. 그리고 컴포넌트 간의 의존성을 낮출 수 있으며 코드 파악도 쉬워진다. 
+
+<details>
+- bad: 컴포넌트가 너무 많은 역할을 수행하고 있다. 
+
+```typescript
+const ActiveUsersList = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const loadUsers = async () => {
+      const response = await fetch("/some-api");
+      const data = await response.json();
+      setUsers(data);
+    };
+
+    loadUsers();
+  }, []);
+
+  const weekAgo = new Date();
+  weekAgo.setDate(weekAgo.getDate() - 7);
+
+  return (
+    <ul>
+      {users
+        .filter((user) => !user.isBanned && user.lastActivityAt >= weekAgo)
+        .map((user) => (
+          <li key={user.id}>
+            <img src={user.avatarUrl} />
+            <p>{user.fullName}</p>
+            <small>{user.role}</small>
+          </li>
+        ))}
+    </ul>
+  );
+};
+```
+
+- Good : 로직을 독립적으로 사용할 수 있도록 한다.
+
+```typescript
+const useActiveUsers = () => {
+  const { users } = useUsers();
+
+  const activeUsers = useMemo(() => {
+    return getOnlyActive(users);
+  }, [users]);
+
+  return { activeUsers };
+};
+
+const ActiveUsersList = () => {
+  const { activeUsers } = useActiveUsers();
+
+  return (
+    <ul>
+      {activeUsers.map((user) => (
+        <UserItem key={user.id} user={user} />
+      ))}
+    </ul>
+  );
+```
+
+</details>
+
+### 개방-폐쇄 원칙 (OCP)
+원본 소스 코드를 변경하지 않고 확장할 수 있는 방식으로 컴포넌트를 구조화하도록 한다. 
+
+### 리스코프 치환 원칙 (LSP)
+React 팀에서는 상속을 쓰는 것을 권고하지 않는다.
+단, typescript에서는 쓸 수 있는데 만약 S가 T의 하위 타입이라면, T 타입의 객체는 S 타입의 객체로 대체될 수 있다.
+ㄴ 부모 클래스와 자식 클래스는 잘못된 결과 없이 서로 교환하여 사용될 수 있도록 한다.
+
+### 인터페이스 분리 원칙 (ISP)
+React에서 컴포넌트는 사용하지 않는 props에 의존해서는 안된다.
+ㄴ 시스템의 컴포넌트 간 의존성을 최소화해 컴포넌트의 결합도를 낮추고, 재사용성을 높일 수 있다. 
+
+<details>
+- bad: 만약 여기에 Thumbnail을 쓰는 LiveStream이라는 컴포넌트가 새로 추가된다면 호환이 안된다.
+
+```typescript
+type Video = {
+  title: string;
+  duration: number;
+  coverUrl: string;
+};
+
+type Props = {
+  items: Array<Video>;
+};
+
+type Props = {
+  video: Video;
+};
+
+const VideoList = ({ items }) => {
+  return (
+    <ul>
+      {items.map((item) => (
+        <Thumbnail key={item.title} video={item} />
+      ))}
+    </ul>
+  );
+};
+
+
+const Thumbnail = ({ video }: Props) => {
+  return <img src={video.coverUrl} />;
+};
+```
+
+- Good: 필요한 props에만 의존하도록 Thumbnail 컴포넌트를 리팩터링해야 한다.
+
+```typescript
+type Props = {
+  coverUrl: string;
+};
+
+const Thumbnail = ({ coverUrl }: Props) => {
+  return <img src={coverUrl} />;
+};
+
+type Props = {
+  items: Array<Video | LiveStream>;
+};
+
+const VideoList = ({ items }) => {
+  return (
+    <ul>
+      {items.map((item) => {
+        if ("coverUrl" in item) {
+          // 여긴 video입니다.
+          return <Thumbnail coverUrl={item.coverUrl} />;
+        } else {
+          // 여긴 live stream입니다.
+          return <Thumbnail coverUrl={item.previewUrl} />;
+        }
+      })}
+    </ul>
+  );
+};
+```
+
+</details>
+
+### 의존관계 역전 원칙(DIP)
+구체화가 아닌 추상화에 의존해야 한다. 
+즉, 한 컴포넌트가 다른 컴포넌트에 직접적으로 의존해서는 안되며, 둘 다 공통된 추상화에 의존해야 한다. 
+ㄴ 서로 다른 컴포넌트 간의 결합을 최소화하는 것을 목표로 한다. 
+
+<details>
+
+- bad
+
+```typescript
+import api from "~/common/api";
+
+const LoginForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (evt) => {
+    evt.preventDefault();
+    await api.login(email, password);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button type="submit">Log in</button>
+    </form>
+  );
+};
+```
+
+- Good: 
+
+```typescript
+import api from "~/common/api";
+
+const ConnectedLoginForm = () => {
+  const handleSubmit = async (email, password) => {
+    await api.login(email, password);
+  };
+
+  return <LoginForm onSubmit={handleSubmit} />;
+};
+
+
+type Props = {
+  onSubmit: (email: string, password: string) => Promise<void>;
+};
+
+const LoginForm = ({ onSubmit }: Props) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (evt) => {
+    evt.preventDefault();
+    await onSubmit(email, password);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button type="submit">Log in</button>
+    </form>
+  );
+};
+```
+
+이렇게 함으로써 LoginForm 컴포넌트는 더 이상 api 모듈에 의존하지 않게 된다.
+api에 크리덴셜을 제출하는 로직은 onSubmit 콜백을 통해 추상화되었으며 이제 이 로직의 구체적인 구현을 제공하는 것은 상위 컴포넌트의 책임이 된다. 
+여기서 LoginForm은 말 그대로 ux만 담당할 수 있게 되고, api 호출은 그 상위 컴포넌트의 책임이 된다. 
+
+</details>
