@@ -1141,3 +1141,56 @@ ex) 특정 타입 값을 할당받지 못하게 할 때
 ```typescript
 type NonString<T> = T extends string ? never : T;
 ```
+
+# 구조분해할당(Destructuring)이란?
+
+객체나 배열에 저장된 데이터를 전체가 아닌 일부만 사용하고 싶을 때, 이들을 변수로 '분해’할 수 있게 해주는 문법이다. ES2015에 새롭게 나온 기술로, 기본적인 구조는 아래와 같다.
+
+```jsx
+let arr = ["Bora", "Lee"]
+
+let [firstName, surname] = arr;
+
+[macbook, ipad] = [ipad, macbook]; // macbook과 ipad 값 교환
+```
+
+위 그림처럼, 배열의 분해는 인덱스를 기준으로 변수에 하나씩 할당되며 할당되는 배열이나 할당 받는 변수들들의 갯수가 달라도 사용이 가능하다. 
+
+또한 두 변수의 값을 교환할 때도 유용하다.
+
+```jsx
+let options = {
+  title: "Menu",
+  width: 100,
+  height: 200
+};
+
+let {title, ...size} = options;
+```
+
+위 그림처럼, 객체의 분해는 프로퍼티 네임을 기준으로 할당되어서 인덱스와 상관없이 할당된다.
+
+# 콜 스택과 메모리 힙이란?
+
+자바스크립트 엔진은 `Memory Heap` 과 `Call Stack` 으로 구성되어 있습니다. 가장 유명한 것이 구글의 V8 Engine입니다. 자바스크립트는 단일 스레드 (single thread) 프로그래밍 언어인데, 이 의미는 `Call Stack이 하나` 라는 이야기입니다. 즉 멀티가 되지 않고, 하나씩 하나씩 처리한다는 의미입니다.
+
+### **콜 스택(Call Stack)**
+
+원시 타입(숫자 등) 데이터가 저장된다.
+
+실행 콘텍스트(Execution Context)를 통해
+
+1) 변수 식별자(이름) 저장,
+
+2) 스코프 체인 및 this 관리,
+
+3) 코드 실행 순서 관리 등을 수행.
+
+
+### **메모리 힙(Memory Heap)**
+
+참조 타입(배열, 객체, 함수 등) 데이터가 저장된다.
+
+메모리 할당이 일어나는 곳.
+
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FwyILC%2Fbtrdon3nQV9%2FyWgZ1qDmEZDwzINEm5dkf1%2Fimg.png" width= 800 />
