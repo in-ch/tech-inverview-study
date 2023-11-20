@@ -1174,7 +1174,7 @@ let {title, ...size} = options;
 
 자바스크립트 엔진은 `Memory Heap` 과 `Call Stack` 으로 구성되어 있습니다. 가장 유명한 것이 구글의 V8 Engine입니다. 자바스크립트는 단일 스레드 (single thread) 프로그래밍 언어인데, 이 의미는 `Call Stack이 하나` 라는 이야기입니다. 즉 멀티가 되지 않고, 하나씩 하나씩 처리한다는 의미입니다.
 
-### **콜 스택(Call Stack)**
+### 콜 스택(Call Stack)
 
 원시 타입(숫자 등) 데이터가 저장된다.
 
@@ -1187,7 +1187,7 @@ let {title, ...size} = options;
 3) 코드 실행 순서 관리 등을 수행.
 
 
-### **메모리 힙(Memory Heap)**
+### 메모리 힙(Memory Heap)
 
 참조 타입(배열, 객체, 함수 등) 데이터가 저장된다.
 
