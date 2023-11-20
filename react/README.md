@@ -3,7 +3,105 @@
 
 1. 코드가 간결해진다. 
 2. 원래 class 컴포넌트를 만들때 <code>‘바인딩되지 않는 this문제’</code>가 많이 발생했었다. 이때 bind 함수를 많이 사용했었다.
+<details>
+  <summary>바인딩되지 않는 this 예제</summary>
+
+<code>바인딩되지 않는 this 문제</code>는 주로 클래스 컴포넌트에서 이벤트 핸들러 함수를 다룰 때 발생할 수 있다.
+
+```typescript
+import React from 'react';
+
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // 이벤트 핸들러 함수에 대한 수동 바인딩
+    this.handleClick = this.handleClick.bind(this);
+
+    this.state = {
+      count: 0
+    };
+  }
+
+  handleClick() {
+    // 이벤트 핸들러 함수에서 this를 사용
+    this.setState({ count: this.state.count + 1 });
+  }
+
+  render() {
+    return (
+      <div>
+        <p>Count: {this.state.count}</p>
+        {/* 이벤트 핸들러 함수를 전달할 때 주의가 필요 */}
+        <button onClick={this.handleClick}>Increment</button>
+      </div>
+    );
+  }
+}
+
+export default MyComponent;
+```
+
+의 코드에서 <code>handleClick</code> 메서드를 호출하는 부분에서는 <code>this</code>가 올바르게 참조되기 위해 수동으로 바인딩을 해주어야 한다. 
+그렇지 않으면 <code>this.setState</code>에서 <code>this는 <code>undefined</code>가 되어 오류가 발생할 것이다.
+
+</details>
+
 3. HOC hell에서 벗어날 수 있다.
+
+<details>
+  <summary>Hoc Hell 예제</summary>
+
+```typescript
+import React from 'react';
+
+// Higher Order Component 1
+const withLogging = (WrappedComponent) => {
+  class WithLogging extends React.Component {
+    componentDidMount() {
+      console.log('Component is mounted');
+    }
+
+    render() {
+      return <WrappedComponent {...this.props} />;
+    }
+  }
+
+  return WithLogging;
+};
+
+// Higher Order Component 2
+const withAuthentication = (WrappedComponent) => {
+  class WithAuthentication extends React.Component {
+    render() {
+      if (this.props.isAuthenticated) {
+        return <WrappedComponent {...this.props} />;
+      } else {
+        return <p>Please log in to view this component.</p>;
+      }
+    }
+  }
+
+  return WithAuthentication;
+};
+
+// Original Component
+class MyComponent extends React.Component {
+  render() {
+    return <div>My Component</div>;
+  }
+}
+
+// HOC hell: 중첩된 고차 컴포넌트
+const EnhancedComponent = withAuthentication(withLogging(MyComponent));
+
+// 사용 예시
+const App = () => {
+  return <EnhancedComponent isAuthenticated={true} />;
+};
+```
+
+</details>
 
 # SEO 최적화 방법에 대해서 설명해주세요.
 

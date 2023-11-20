@@ -1087,7 +1087,7 @@ Float32Array 및 Float64Array: 각각 32비트 및 64비트 부동 소수점 수
 
 이러한 이유로 타이핑된 배열은 특정 작업, 특히 바이너리 데이터 처리 및 수치 계산에 대한 성능을 향상시키는 데 더 적합합니다.
 
-# any, unknown, any 
+# any, unknown, never 
 <code>unknown</code> 은 타입스크립트의 Top-Type 이다.
 따라서 타입스크립트에 존재하는 모든 타입을 할당 할 수 있다.
 다시 말해서, 모든 타입의 공통적인 연산밖에 할 수 없다.
@@ -1194,3 +1194,18 @@ let {title, ...size} = options;
 메모리 할당이 일어나는 곳.
 
 <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FwyILC%2Fbtrdon3nQV9%2FyWgZ1qDmEZDwzINEm5dkf1%2Fimg.png" width= 800 />
+
+
+# ^ 마크에 대해서 설명해주세요. 
+
+`package.json` 파일의 `dependencies` 섹션에 `^` (caret) 기호를 사용하면 해당 패키지의 마이너 버전이나 패치 버전까지는 업데이트를 허용하는 의미
+
+예를 들어, `"^asdf: 0.0.1"`으로 지정된 경우에는 실제로는 `0.0.x` (어떤 x 값이든) 버전을 다운로드하게 된다. 
+만약 0.0.3 버전이 나오면, 최신 버전인 0.0.3 버전을 가져온다.
+
+버전 넘버링 규칙은 SemVer(시멘틱 버전) 규칙을 따르며, 메이저 버전, 마이너 버전, 패치 버전으로 구성되어 있다.
+
+caret (`^`) 기호는 메이저 버전이 동일하면 마이너 버전 및 패치 버전을 업데이트하는 것을 허용한다.
+
+만약 그게 싫다면 <code>yarn install --frozen-lockfile</code>를 사용해서 패키지 버전을 고정시켜야 한다.
+
