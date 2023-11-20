@@ -5,6 +5,60 @@
 2. 원래 class 컴포넌트를 만들때 <code>‘바인딩되지 않는 this문제’</code>가 많이 발생했었다. 이때 bind 함수를 많이 사용했었다.
 3. HOC hell에서 벗어날 수 있다.
 
+<details>
+  <summary>Hoc Hell 예제</summary>
+  
+```typescript
+import React from 'react';
+
+// Higher Order Component 1
+const withLogging = (WrappedComponent) => {
+  class WithLogging extends React.Component {
+    componentDidMount() {
+      console.log('Component is mounted');
+    }
+
+    render() {
+      return <WrappedComponent {...this.props} />;
+    }
+  }
+
+  return WithLogging;
+};
+
+// Higher Order Component 2
+const withAuthentication = (WrappedComponent) => {
+  class WithAuthentication extends React.Component {
+    render() {
+      if (this.props.isAuthenticated) {
+        return <WrappedComponent {...this.props} />;
+      } else {
+        return <p>Please log in to view this component.</p>;
+      }
+    }
+  }
+
+  return WithAuthentication;
+};
+
+// Original Component
+class MyComponent extends React.Component {
+  render() {
+    return <div>My Component</div>;
+  }
+}
+
+// HOC hell: 중첩된 고차 컴포넌트
+const EnhancedComponent = withAuthentication(withLogging(MyComponent));
+
+// 사용 예시
+const App = () => {
+  return <EnhancedComponent isAuthenticated={true} />;
+};
+```
+
+</details>
+
 # SEO 최적화 방법에 대해서 설명해주세요.
 
 1. 키워드 연구 (Keyword Research):
