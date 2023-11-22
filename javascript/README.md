@@ -1209,3 +1209,5 @@ caret (`^`) 기호는 메이저 버전이 동일하면 마이너 버전 및 패�
 
 만약 그게 싫다면 <code>yarn install --frozen-lockfile</code>를 사용해서 패키지 버전을 고정시켜야 한다.
 
+# 컨벤션들 
+[컨벤션들 링크](https://ui.toast.com/fe-guide/ko_CODING-CONVENTION)
