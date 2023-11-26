@@ -63,3 +63,99 @@ Property는 attribute에 대한 HTML DOM트리 안에서의 표현이다. 같은
 # 프로그레시브 렌더링(Progressive Rendering)이 무엇인가?
 
 프로그레시브 렌더링은 컨텐츠를 가능한 빨리 표시하기 위해 성능을 향상시키는 기술이다. 인터넷 속도가 느리거나 불안정한 모바일 환경이 아직 많이 남아있기 때문에 이럴 때 유용하게 사용한다. 대표적으로 레이지 로딩이 있다. 이미지를 한 번에 로드하는 것이 아니라, 자바스크립트를 통해 사용자가 표시하려는 부분만 스크롤 시에 이미지를 로드하는 것이다.
+
+# Aria 속성에 대해서 알려주세요
+
+접근가능한 리치 인터넷 어플리케이션(Accessible Rich Internet Applications, ARIA)은 장애를 가진 사용자가 웹 콘텐츠와 웹 어플리케이션(특히 JavaScript를 사용하여 개발한 경우)에 더 쉽게 접근할 수 있는 방법을 정의하는 여러 특성을 말한다.
+
+ARIA는 HTML을 보충해, 일반적으로 보조 기술이 알 수 없는 상호작용 및 흔히 쓰이는 어플리케이션 위젯에 필요한 정보를 제공한다.
+
+참고로 Aria로 제공되는 많은 기능들이 HTML에서 태그로 이미 제공되므로 웬만한 상황에서는 태그를 활용하는 것이 좋다.
+
+ex)
+```html
+<div
+  id="percent-loaded"
+  role="progressbar"
+  aria-valuenow="75"
+  aria-valuemin="0"
+  aria-valuemax="100"></div>
+```
+
+<details>
+  <summary>다양한 속성값 알아보기</summary>
+
+role="application"
+
+:동일요소x,div요소와같이 그룹역할을하는 요소로 대체
+
+role="banner"
+
+:비슷한 의미로 <header>사용가능 -> <header role="banner"> 로 사용시 1페이지에서 1개만 사용하기를 권장
+
+role="navigation"
+
+:<nav>와 동일
+
+role="main"
+
+:<main>과 동일 ->1페이지 내에 1개만 사용가능하다. 본문의 주요 컨텐츠 영역
+
+role="aside"
+
+:<aside>와 동일, 주요컨텐츠와 연관이 적은 의미를 가진 영역
+
+role="form"
+
+:<form>와 동일, 서버에 전송될 수 있는 콘텐츠, 폼관련 요소 모임
+
+role="search"
+
+:검색 역할을 담당하는 서식영역, <div>또는 <form>에 사용권장.
+
+role="contentinfo"
+
+:<footer>와 비슷, <footer role="contentinfo">로 사용시 한 페이지에 한개요소만 사용하길 권장.
+
+role="button"
+
+:p, span, div에서도 버튼컨트롤로 사용된다는 것을 스크린리더에 인식시킬 수 있다.
+
+가능하면 button role보다 기본 html의 <button>, <input type="button">, <input type="submit">을 사용해야 한다. 기본html요소들은 추가 사용자 정의 없이 키보드 포커스를 지원한다.
+
+role ="tablist"
+
+:탭메뉴 등의 리스트임을 사용자에게 전달한다.
+
+role="tab"
+
+:보조기기가 탭으로 인식.
+
+role="tabpanel"
+
+:보조기기가 탭 패널로 인식
+
+role="presentation", role="none"
+
+:semantic의미를 요소와 그 자식요소로부터 제거하기 위해서 사용한다. 시각적으로 게시하는 용도의 요소에 적용. none은 최근에 나온 속성값으로 presentation과 같은역할을 한다. 호환성문제가 있을 수 있으니까 두개 다 기입해 주는것이 좋음.
+
+role="group"
+
+:라디오 버튼과 같이 여러개의 옵션 중 한가지를 선택 할 때, name속성값에 같은 값을 넣어줘서 그룹화 하더라도 스크린리더 사용자는 시각적으로 볼수있는 사용자와 달리 묶여있는 그룹이라는 것을 인식하기 어렵다. 이러한경우 role="group"를 부여하여 같은 그룹이라는 것을 인식시킨다.
+
+확장되어 있는 상태의 탭 패널
+
+aria-expanded로 현재 탭 패널이 펼쳐짐(활성화)상태 라는 것을전달. (false=접힌상태)
+
+<div role="tabpanel" aria-expanded="true">
+input에 입력된 값이 유효한지 판단하기 위한 것
+
+<input type="text" aria-invalid="true">
+true는 오류가 발생한 상태라는 것을 전달.
+
+선택된 상태의 토글버튼: pressed를 이용하여 해당 요소를 토글버튼으로 정의하여 준다. true는 누른상태, false는 누르지않은 상태, mixed는 부분적으로 눌린상태이다.
+
+<button aria-pressed="true">
+true는 현재 버튼이 눌림상태라는 것을 전달한다.
+  
+</details>
