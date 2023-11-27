@@ -85,63 +85,63 @@ ex)
 <details>
   <summary>다양한 속성값 알아보기</summary>
 
-role="application"
+- role="application"
 
-:동일요소x,div요소와같이 그룹역할을하는 요소로 대체
+동일요소x,div요소와같이 그룹역할을하는 요소로 대체
 
-role="banner"
+- role="banner"
 
-:비슷한 의미로 <header>사용가능 -> <header role="banner"> 로 사용시 1페이지에서 1개만 사용하기를 권장
+비슷한 의미로 <header>사용가능 -> <header role="banner"> 로 사용시 1페이지에서 1개만 사용하기를 권장
 
-role="navigation"
+- role="navigation"
 
-:<nav>와 동일
+<nav>와 동일
 
-role="main"
+- role="main"
 
-:<main>과 동일 ->1페이지 내에 1개만 사용가능하다. 본문의 주요 컨텐츠 영역
+<main>과 동일 ->1페이지 내에 1개만 사용가능하다. 본문의 주요 컨텐츠 영역
 
-role="aside"
+- role="aside"
 
-:<aside>와 동일, 주요컨텐츠와 연관이 적은 의미를 가진 영역
+<aside>와 동일, 주요컨텐츠와 연관이 적은 의미를 가진 영역
 
-role="form"
+- role="form"
 
-:<form>와 동일, 서버에 전송될 수 있는 콘텐츠, 폼관련 요소 모임
+<form>와 동일, 서버에 전송될 수 있는 콘텐츠, 폼관련 요소 모임
 
-role="search"
+- role="search"
 
-:검색 역할을 담당하는 서식영역, <div>또는 <form>에 사용권장.
+검색 역할을 담당하는 서식영역, <div>또는 <form>에 사용권장.
 
-role="contentinfo"
+- role="contentinfo"
 
-:<footer>와 비슷, <footer role="contentinfo">로 사용시 한 페이지에 한개요소만 사용하길 권장.
+<footer>와 비슷, <footer role="contentinfo">로 사용시 한 페이지에 한개요소만 사용하길 권장.
 
-role="button"
+- role="button"
 
-:p, span, div에서도 버튼컨트롤로 사용된다는 것을 스크린리더에 인식시킬 수 있다.
+p, span, div에서도 버튼컨트롤로 사용된다는 것을 스크린리더에 인식시킬 수 있다.
 
 가능하면 button role보다 기본 html의 <button>, <input type="button">, <input type="submit">을 사용해야 한다. 기본html요소들은 추가 사용자 정의 없이 키보드 포커스를 지원한다.
 
-role ="tablist"
+- role="tablist"
 
-:탭메뉴 등의 리스트임을 사용자에게 전달한다.
+탭메뉴 등의 리스트임을 사용자에게 전달한다.
 
-role="tab"
+- role="tab"
 
-:보조기기가 탭으로 인식.
+보조기기가 탭으로 인식.
 
-role="tabpanel"
+- role="tabpanel"
 
-:보조기기가 탭 패널로 인식
+보조기기가 탭 패널로 인식
 
-role="presentation", role="none"
+- role="presentation", role="none"
 
-:semantic의미를 요소와 그 자식요소로부터 제거하기 위해서 사용한다. 시각적으로 게시하는 용도의 요소에 적용. none은 최근에 나온 속성값으로 presentation과 같은역할을 한다. 호환성문제가 있을 수 있으니까 두개 다 기입해 주는것이 좋음.
+semantic의미를 요소와 그 자식요소로부터 제거하기 위해서 사용한다. 시각적으로 게시하는 용도의 요소에 적용. none은 최근에 나온 속성값으로 presentation과 같은역할을 한다. 호환성문제가 있을 수 있으니까 두개 다 기입해 주는것이 좋음.
 
-role="group"
+- role="group"
 
-:라디오 버튼과 같이 여러개의 옵션 중 한가지를 선택 할 때, name속성값에 같은 값을 넣어줘서 그룹화 하더라도 스크린리더 사용자는 시각적으로 볼수있는 사용자와 달리 묶여있는 그룹이라는 것을 인식하기 어렵다. 이러한경우 role="group"를 부여하여 같은 그룹이라는 것을 인식시킨다.
+라디오 버튼과 같이 여러개의 옵션 중 한가지를 선택 할 때, name속성값에 같은 값을 넣어줘서 그룹화 하더라도 스크린리더 사용자는 시각적으로 볼수있는 사용자와 달리 묶여있는 그룹이라는 것을 인식하기 어렵다. 이러한경우 role="group"를 부여하여 같은 그룹이라는 것을 인식시킨다.
 
 확장되어 있는 상태의 탭 패널
 
