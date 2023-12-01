@@ -1211,3 +1211,37 @@ caret (`^`) 기호는 메이저 버전이 동일하면 마이너 버전 및 패�
 
 # 컨벤션들 
 [컨벤션들 링크](https://ui.toast.com/fe-guide/ko_CODING-CONVENTION)
+
+# async의 올바른 위치
+
+```javascript
+// 1) 함수 선언식
+async function example1(a, b) {
+  return a + b;
+}
+
+// 2-1) 함수 표현식
+const example2_1= async function add(a, b) {
+  return a + b;
+};
+
+// 2-2) 함수 표현식(Anonymous)
+const example2_2 = async function(a, b) {
+  return a + b;
+};
+
+// 3-1) 화살표 함수
+const example3_1 = async (a, b) => {
+  return a + b;
+};
+
+// 3-2) 화살표 함수(shortened)
+const example3_2 = async (a, b) => a + b;
+```
+
+# HTML과 JSX의 차이
+
+1. 표현식을 사용할 땐 중괄호 사용, 삼항연산자도 값으로 평가된다.
+2. 속성명은 카멜케이스, 자바스크립트 예약어와 같은 속성명은 다르게 작성한다. (for => htmlFor, class => className)
+3. JSX는 동적인 마크업이다.
+4. 2줄 이상의 JSX는 하나의 태그로 감싸야한다.(Fragment도 가능).
