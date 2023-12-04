@@ -1001,15 +1001,3 @@ async function saveData() {
 ```
 
 </details>
-
-<details>
-  <summary></summary>
-</details>
-
-<details>
-  <summary></summary>
-</details>
-
-<details>
-  <summary></summary>
-</details>
