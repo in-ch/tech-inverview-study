@@ -781,3 +781,235 @@ api에 크리덴셜을 제출하는 로직은 onSubmit 콜백을 통해 추상�
 > 아무리 비교해봤는데,, headless design pattern과 ioc 패턴과 비슷한 것 같다.
   결국 둘다 UI와 비지니스 로직을 분리하는 것에 집중한다. 
   ioc는 말그대로 비지니스 로직을 직접 사용하는 개발자에게 위임하는 것을 말하고, 헤드리스 컴포넌트는 ui랑 비지니스 로직을 분리하는 의미한다. 결국 둘다 혼용해서 쓰는 것이고 위의 적은 다양한 패턴들이 존재하는 것이다.
+
+# 리액트에서 제시하는 9가지 권장 사항 
+
+<details>
+  <summary>1. 반복문에서 요소의 키를 선택할 때는 (배열 인덱스가 아닌) 동일한 항목에 대해 항상 동일한 값을 갖는 식별자를 사용해야 한다.</summary>
+
+- 리액트는 렌더링 전반에 걸쳐 리스트 요소를 추적하기 위해 키를 사용한다. 요소가 추가, 삭제 또는 순서가 변경되면 인덱스 키는 리액트가 잘못 추적하게 만들어 버그를 유발할 수 있다.
+
+```tsx
+// 🛑 잘못된 코드
+return (
+  <ul>
+    {items.map((item, index) => (
+      <li key={index}>…</li>
+    ))}
+  </ul>
+);
+
+// 🟢 올바른 코드, item.id가 안정적인 고유한 식별자라고 가정했을 때
+return (
+  <ul>
+    {items.map((item, index) => (
+      <li key={item.id}>…</li>
+    ))}
+  </ul>
+);
+```
+
+</details>
+
+<details>
+  <summary>2. 컴포넌트를 정의할 때는 다른 컴포넌트나 함수 안에 중첩되지 않도록 하고 파일/모듈의 최상위 레벨에 정의해야 한다.</summary>
+
+때로는 다른 컴포넌트 안에 컴포넌트를 정의하는 것이 편리해 보일 수 있다. 하지만 이렇게 하면 렌더링할 때마다 컴포넌트가 재선언되어 성능이 저하될 수 있다.
+
+```tsx
+// 🛑 잘못된 코드
+function ParentComponent() {
+  // ...
+  function ChildComponent() {…}
+
+  return <div><ChildComponent /></div>;
+}
+
+// 🟢 올바른 코드
+function ChildComponent() {…}
+
+function ParentComponent() {
+  return <div><ChildComponent /></div>;
+}
+```
+
+</details>
+
+<details>
+  <summary>3. 상태에 무엇을 저장할지 결정할 때는 필요한 것을 계산하는 데 사용할 수 있는 최소한의 정보를 저장해라</summary>
+
+이렇게 해야 버그 발생 없이 상태를 쉽게 업데이트할 수 있다. 
+서로 다른 상태 항목이 서로 맞지 않거나 일관성이 떨어지는 것을 방지할 수 있다.
+
+```tsx
+// 🛑 잘못된 코드
+const [allItems, setAllItems] = useState([]);
+const [urgentItems, setUrgentItems] = useState([]);
+
+function handleSomeEvent(newItems) {
+  setAllItems(newItems);
+  setUrgentItems(newItems.filter((item) => item.priority === "urgent"));
+}
+
+// 🟢 올바른 코드
+const [allItems, setAllItems] = useState([]);
+const urgentItems = allItems.filter((item) => item.priority === "urgent");
+
+function handleSomeEvent(newItems) {
+  setAllItems(newItems);
+}
+```
+
+</details>
+
+<details>
+  <summary>4. useMemo, useCallback 혹은 memo를 사용하여 캐싱할지 여부를 고려한다면 성능 문제가 발견될 때까지 캐싱을 미뤄야 한다.</summary>
+
+항상 메모하는 것이 큰 단점은 아니지만, 사소한 단점은 코드의 가독성이 떨어진다.
+
+```tsx
+// 🛑 잘못된 코드
+const [allItems, setAllItems] = useState([]);
+const urgentItems = useMemo(
+  () => (allItems.filter((item) => item.status === "urgent"), [allItems])
+);
+
+// 🟢 올바른 코드 (성능 문제가 발견되기 전까지)
+const [allItems, setAllItems] = useState([]);
+const urgentItems = allItems.filter((item) => item.priority === "urgent");
+```
+
+</details>
+
+<details>
+  <summary>5. 공통된 코드를 함수로 추출할 때, 다른 훅을 호출하는 경우에만 훅으로 이름을 지정해야 한다.</summary>
+
+함수 컴포넌트가 다른 훅을 호출하는 경우, 그 함수도 훅이어야 리액트의 훅 동작에 대한 제한을 적용할 수 있다.
+함수가 다른 훅을 호출하지 않는다면 이러한 제한을 적용할 이유가 없다. 함수는 조건부 내부를 포함해 어드에서나 호출할 수 있기 때문에 훅이 아닐 때 더욱 다양하게 활용될 수 있다.
+
+- 제한 사항 
+1. 최상위에서만 호출: 훅은 항상 함수 컴포넌트 또는 다른 커스텀 훅 내에서 최상위 수준에서만 호출해야 하고 반복문같은 곳 안에 못 넣는다.
+2. 함수 컴포넌트 또는 다른 훅 내에서만 사용되어야 합니다. 
+    참고로 React의 함수 컴포넌트에서는 항상 JSX 또는 null을 반환해야 한다.
+
+```tsx
+// 🛑 잘못된 코드
+function useDateColumnConfig() {
+  // 훅 제한이 적용됩니다
+  return {
+    dataType: "date",
+    formatter: prettyFormatDate,
+    editorComponent: DateEditor,
+  };
+}
+
+// 🟢 올바른 코드
+function getDateColumnConfig() {
+  // 어디에서나 호출할 수 있습니다
+  return {
+    dataType: "date",
+    formatter: prettyFormatDate,
+    editorComponent: DateEditor,
+  };
+}
+
+function useNameColumnConfig() {
+  // useTranslation 훅을 호출하기 때문에 훅이어야 합니다
+  const { t } = useTranslation();
+  return {
+    dataType: "string",
+    title: t("columns.name"),
+  };
+}
+```
+
+</details>
+
+<details>
+  <summary>6. 프로퍼티 변경에 따라 상태를 조정해야 하는 경우 effect가 아닌 컴포넌트 함수에 (렌더링 중에) 직접 상태를 설정해야 한다.</summary>
+
+```tsx
+// 🛑 잘못된 코드
+function List({ items }) {
+  const [selection, setSelection] = useState(null);
+
+  useEffect(() => {
+    setSelection(null);
+  }, [items]);
+  //...
+}
+
+// 🟢 올바른 코드
+function List({ items }) {
+  const [prevItems, setPrevItems] = useState(items);
+  const [selection, setSelection] = useState(null);
+
+  if (items !== prevItems) {
+    setPrevItems(items);
+    setSelection(null);
+  }
+  //...
+}
+```
+</details>
+
+<details>
+  <summary>7. 데이터를 페칭해야 하는 경우, useEffect보다 라이브러리를 사용하는 것이 좋다.</summary>
+
+useEffect로 데이터를 페칭할 경우 미세한 버그가 발생할 수 있고 이를 해결하기 위해서는 많은 양의 보일러 플레이트가 필요하다. 
+
+```tsx
+// 🛑 잘못된 코드
+const [items, setItems] = useState();
+useEffect(() => {
+  api.loadItems().then((newItems) => setItems(newItems));
+}, []);
+
+// 🟢 올바른 코드 (하나의 라이브러리 사용 예시)
+import { useQuery } from "@tanstack/react-query";
+
+const { data: items } = useQuery(["items"], () => api.loadItems());
+```
+
+</details>
+
+<details>
+  <summary>8. 이벤트 발생에 대한 응답으로 어떠한 액션을 취해야 하는 경우, useEffect가 아닌 이벤트 핸들러에 코드를 작성해라.</summary>
+
+```tsx
+const [savedData, setSavedData] = useState(null);
+const [validationErrors, setValidationErrors] = useState(null);
+
+// 🛑 잘못된 코드
+useEffect(() => {
+  if (savedData) {
+    setValidationErrors(null);
+  }
+}, [savedData]);
+
+function saveData() {
+  const response = await api.save(data);
+  setSavedData(response.data);
+}
+
+// 🟢 올바른 코드
+async function saveData() {
+  const response = await api.save(data);
+  setSavedData(response.data);
+  setValidationErrors(null);
+}
+```
+
+</details>
+
+<details>
+  <summary></summary>
+</details>
+
+<details>
+  <summary></summary>
+</details>
+
+<details>
+  <summary></summary>
+</details>
