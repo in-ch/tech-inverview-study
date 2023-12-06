@@ -305,3 +305,104 @@ Google에서 검색 순위 알고리즘의 일부로 사용하는 웹 성능 메
     - 쿼리 내에 하나는 적어도 유일값이여야 한다.
 
 암튼 구현은 커서 기반 페이지네이션이 어렵지만 오프셋 기반 페이지네이션보다 성능이 뛰어나다. 만약에 crud가 빈번하게 일어난다면 커서 기반 페이지네이션을 고려해봐도 좋다. (오프셋 기반의 경우 조회 중 DB 값이 수정되었다면 이슈가 생길 수 있으므로)
+
+# 캐싱 
+
+캐싱은 어떤 데이터를 한 번 받아온 후에 그 데이터를 불러온 저장보다 가까운 곳에 임시로 저장하여, 필요시 더 빠르게 불러와서 사용하는 프로세스를 의미한다. 이러한 장점이 있는 만큼 단위 메모리당 비용이 비싼 편이다. 따라서 엔지니어는 재사용을 충분히 많이 할 수 잇는 데이터만 선별적으로 잘 캐싱해서, 성능과 비용을 모두 아끼는 것이 중요하다.
+
+1. 웹 캐시 
+클라이언트는 서버로부터 HTTP 요청을 통해 필요한 데이터(HTML, CSS, JS 등)을 불러온다. 기본적으로 웹사이트가 실행될 때마다, 클라이언트는 해당 웹사이트를 그리기 위해 필요한 데이터를 전부 다 불러와야 한다. -> 캐싱하는 법은 무엇인가 
+
+- 브라우저 캐시
+브라우저 캐시는 브라우저나 HTTP 요청을 하는 클라이언트 애플리케이션에 의해 내부 디스크에 이루어지는 캐시이며, HTTP 캐시라고 불리기도 한다. 이러한 캐시는 단일 사용자를 대상으로 하는 사설 캐시(Private Cache)이며, 해당 사용자의 정보만을 저장한다.
+일반적으로 <code>ETag, Cache-Control</code>이 있다.
+
+<details>
+  <summary>ETag(앤터티 태그)</summary>
+
+ETag(엔터티 태그)는 HTTP 헤더 중 하나로, 특정 리소스의 버전을 나타내는 식별자
+ETag는 웹 서버와 클라이언트 간에 캐시 유효성을 검사하고, 리소스가 변경되었는지 확인하는 데 사용된다.
+기본적으로, 서버는 각 리소스에 대해 고유한 ETag 값을 생성하거나 할당한다.
+클라이언트가 해당 리소스를 요청할 때, 서버는 이 ETag 값을 함께 응답 헤더에 포함시켜 클라이언트에게 전송한다.
+
+클라이언트는 이 ETag 값을 나중에 같은 리소스를 요청할 때 If-None-Match 헤더에 담아서 서버에 전송한다.
+만약 클라이언트가 리소스를 캐시하고 있고, 이 리소스의 ETag 값이 서버에 있는 현재 버전과 일치한다면, 서버는 "304 Not Modified" 응답을 반환하고 리소스의 본문을 전송하지 않는다. 
+이를 통해 네트워크 트래픽을 줄이고 불필요한 데이터 전송을 방지할 수 있다.
+
+```typescript
+const axios = require('axios');
+
+// 이전에 받은 ETag 값을 저장하는 변수
+let etag = null;
+// 이전에 받은 데이터를 저장하는 변수
+let cachedData = null;
+
+// 리소스 요청
+axios.get('https://api.example.com/data', {
+  headers: {
+    'If-None-Match': etag,
+  },
+})
+.then(response => {
+  if (response.status === 304) {
+    // 리소스가 변경되지 않았음
+    console.log('Resource not modified, using cached data.');
+    // 이전에 캐시한 데이터를 사용
+    console.log('Cached Data:', cachedData);
+  } else {
+    // 리소스가 변경되었음
+    console.log('Resource modified, fetching updated data.');
+    // 리소스를 사용하고, 새로운 ETag 값을 저장
+    // ...
+    etag = response.headers.etag;
+    // 새로운 데이터를 저장
+    cachedData = response.data;
+    console.log('Updated Data:', cachedData);
+  }
+})
+.catch(error => {
+  console.error('Error fetching resource:', error);
+});
+```
+</details>
+
+<details>
+  <summary>Cache-Control</summary>
+
+`Cache-Control`은 HTTP 헤더 중 하나로, 캐싱 동작을 지정하는 데 사용된다. 이 헤더를 사용하면 클라이언트와 서버 간에 어떻게 캐싱을 제어할지 명시적으로 설정할 수 있다.
+HTTP/1.1부터 도입되었으며, HTTP/1.0의 `Progma` 헤더와 `Expires` 헤더를 대체하는 역할을 한다.
+- Cache-Control: public  응답이 공개 캐시에 저장될 수 있음을 나타낸다. 여러 사용자 간에 공유될 수 있다.
+- Cache-Control: private  응답이 특정 사용자에게만 제공되고, 공개 캐시에 저장되지 않음을 나타낸다.
+- Cache-Control: max-age=3600  캐시된 리소스의 최대 유효 시간을 초 단위로 설정, 이 시간이 경과하면, 클라이언트는 서버로부터 새로운 리소스를 요청한다.
+- Cache-Control: no-cache  캐시는 사용하지만, 항상 서버에 재검증을 요청해야 한다.
+- Cache-Control: no-store: 응답을 캐시하지 않아야 한다. 
+- Cache-Control: must-revalidate  캐시된 리소스가 만료되면, 서버에 다시 확인을 요청해야 한다.
+- Cache-Control: s-maxage=600  공유 캐시에서만 유효한 `max-age`와 유사하지만, 특정 공유 캐시에서만 사용된다.
+- Cache-Control: no-transform 중간 프록시 등에 의해 리소스가 변환되지 않아야 함을 나타낸다.
+- Cache-Control: immutable 리소스가 변경되지 않음을 나타낸다. 
+
+```typescript
+const axios = require('axios');
+
+// 여러 Cache-Control 지시자를 쉼표로 구분하여 설정
+const cacheControlHeader = 'max-age=3600, must-revalidate'; // 예: 캐시 유효 시간을 1시간으로 설정하고, must-revalidate 추가
+
+// Axios로 GET 요청을 보냄
+axios.get('https://api.example.com/data', {
+  headers: {
+    'Cache-Control': cacheControlHeader,
+  },
+})
+  .then(response => {
+    // 서버 응답을 처리
+    console.log('Response:', response.data);
+  })
+  .catch(error => {
+    // 오류 처리
+    console.error('Error:', error.message);
+  });
+```
+
+</details>
+
+[참고](https://yozm.wishket.com/magazine/detail/2341/)
