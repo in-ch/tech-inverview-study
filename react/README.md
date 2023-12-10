@@ -41,7 +41,7 @@ export default MyComponent;
 ```
 
 의 코드에서 <code>handleClick</code> 메서드를 호출하는 부분에서는 <code>this</code>가 올바르게 참조되기 위해 수동으로 바인딩을 해주어야 한다. 
-그렇지 않으면 <code>this.setState</code>에서 <code>this는 <code>undefined</code>가 되어 오류가 발생할 것이다.
+그렇지 않으면 <code>this.setState</code>에서 <code>this</code>는 <code>undefined</code>가 되어 오류가 발생할 것이다.
 
 </details>
 
