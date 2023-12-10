@@ -1001,3 +1001,37 @@ async function saveData() {
 ```
 
 </details>
+
+# useLayoutEffect 
+
+### useEffect와의 차이점
+layout 이후, paint 이전 시점에 useLayoutEffect가 실행하게 된다. 
+
+여기서 layout이란 브라우저가 html, css, js를 다운 받은 후 dom과 cssom을 그리게 된 후 → 레이아웃을 그리며 rendertree를 만들게 된다. 그 후 paint를 실행하게 되는데 useLayoutEffect는 그 시점 전에 실행되게 된다. 
+
+다만, 렌더링 도중 useLayoutEffect를 만나 동기적으로 이 작업이 끝난 후에 렌더링이 다시 재개되기 때문에 성능에 악영향을 미칠 수가 있어 조심히 사용해야 한다.
+
+### 사용 예제 
+```tsx
+import React, { useState, useLayoutEffect } from 'react';
+
+const LayoutEffectExample = () => {
+  const [width, setWidth] = useState(0);
+
+  // useLayoutEffect는 렌더링 직후에 호출되므로 화면에 반영된 레이아웃을 가져올 수 있음.
+  useLayoutEffect(() => {
+    // 화면에 반영된 요소의 너비를 가져와 상태 업데이트
+    const newWidth = document.getElementById('example-element').offsetWidth;
+    setWidth(newWidth);
+  }, []); // 의존성 배열이 빈 배열이므로 한 번만 실행
+
+  return (
+    <div>
+      <p id="example-element">This is an example element.</p>
+      <p>The width of the element is: {width}px</p>
+    </div>
+  );
+};
+
+export default LayoutEffectExample;
+```
