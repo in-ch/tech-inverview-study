@@ -1245,3 +1245,17 @@ const example3_2 = async (a, b) => a + b;
 2. 속성명은 카멜케이스, 자바스크립트 예약어와 같은 속성명은 다르게 작성한다. (for => htmlFor, class => className)
 3. JSX는 동적인 마크업이다.
 4. 2줄 이상의 JSX는 하나의 태그로 감싸야한다.(Fragment도 가능).
+
+
+# truthy & falsy란?
+
+**falsy**는 조건문 내부에서 false로 취급되는 값.
+
+- false
+- 0, -0, 0n, 0x0n
+- NaN
+- ‘’, “”, ``
+- null
+- undefined
+
+**truthy**는 조건문 내부에서 true로 취급되는 값. 위의 falsy값들을 제외하면 모두 true로 취급된다. 참고로 {}, []처럼 빈 객체나 배열도 true 값이다.

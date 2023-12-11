@@ -101,6 +101,15 @@ const App = () => {
 
 </details>
 
+
+# 메모이제이션이란?
+
+컴퓨터 프로그램이 동일한 계산을 반복적으로 해야할 때, **이전에 계산한 값을 메모리에 저장**하여 중복적인 계산을 제거하고 전체적인 실행 속도를 빠르게 해주는 기법이다.
+
+- **useMemo**는 비용이 큰 연산에 대한 결과를 저장해 두고, 이 저장된 값을 반환하는 훅이다.
+- useMemo가 값을 기억했다면, **useCallback**은 인수로 넘겨받은 콜백 자체를 기억한다.
+
+
 # SEO 최적화 방법에 대해서 설명해주세요.
 
 1. 키워드 연구 (Keyword Research):
@@ -1035,3 +1044,38 @@ const LayoutEffectExample = () => {
 
 export default LayoutEffectExample;
 ```
+
+# 고차 컴포넌트란?
+
+고차 컴포넌트는 리액트 컴포넌트 로직을 재사용하기 위한 방법 중에 하나다. 같은 로직을 다수의 컴포넌트에 동일 적용해야할 때 굉장히 유용하게 사용할 수 있다
+
+```jsx
+import React from 'react';
+import Loading from '../components/Loading';
+
+const withLoading = (WrappedComponent) => props => {
+  if (props.isLoading) return <Loading/>
+  return <WrappedComponent {...props}/>
+}
+
+export default withLoading;
+```
+
+```jsx
+import React from 'react';
+import withLoading from '../hoc/withLoading'
+
+const ComponentA = props => {
+  ...
+}
+
+export default withLoading(ComponentA);
+```
+
+고차 컴포넌트는 횡단 관심사를 분리하는데 사용한다. 횡단 관심사란 어플리케이션 각 계층에서 공통적으로 필요한 문제. **고차 컴포넌트**는 이런 공통의 기능을 해결하는 역할을 한다.
+
+ex)
+
+서버 어플리케이션의 횡단 관심사: 로깅과 인증
+
+클라이언트 어플리케이션의 횡단 관심사: 주소 정보나 전역 스토어
