@@ -1011,6 +1011,12 @@ async function saveData() {
 
 </details>
 
+# 왜 useEffect에서 데이터 패칭을 하면 안될까 ? 
+
+[요약 글](https://velog.io/@sxin2949/%EC%99%9C-useEffect%EC%97%90%EC%84%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%8C%A8%EC%B9%AD%EC%9D%84-%ED%95%98%EB%A9%B4-%EC%95%88%EB%90%A0%EA%B9%8C)
+
+
+
 # useLayoutEffect 
 
 ### useEffect와의 차이점
