@@ -411,3 +411,46 @@ axios.get('https://api.example.com/data', {
 </details>
 
 [참고](https://yozm.wishket.com/magazine/detail/2341/)
+
+# 디바운싱과 스로틀링에 대해 설명해주세요.
+
+## 디바운싱(Debouncing)
+
+디바운싱은 프로그래밍에서 많이 사용되는 개념으로, 주로 이벤트가 너무 빈번하게 발생하는 것을 최소화하기 위해 사용한다. 자주 일어나는 이벤트를 감당하지 않고 일정 시간동안 이벤트가 일어나지 않으면 마지막 이벤트만 처리하는 방식이다.
+
+예를 들어, 사용자가 입력창에 글자를 입력할 때마다 발생하는 이벤트를 제한할 때 사용할 수 잇다.
+
+JavaScript에서는 setTimeout과 clearTimeout 함수를 사용하여 디바운싱을 구현할 수 있다.
+
+```jsx
+let timeoutId;
+function debounce(func, delay) {
+  clearTimeout(timeoutId);
+  timeoutId = setTimeout(() => {
+    func();
+  }, delay);
+}
+```
+
+## 스로틀링(Throttling)
+
+스로틀링은 이벤트 발생률을 특정 시간 간격으로 제한한다. 즉, 일정 시간 간격 내에 여러 이벤트가 발생하더라도 한 번만 처리되도록 하는 것이다.
+
+스크롤 이벤트나 리사이징 이벤트 등 자주 발생하는 이벤트의 경우, 스로틀링을 통해 성능을 개선할 수 있다.
+
+JavaScript에서 스로틀링은 이렇게 구현할 수 있습니다.
+
+```jsx
+let isThrottling = false;
+function throttle(func, delay) {
+  if (!isThrottling) {
+    func();
+    isThrottling = true;
+    setTimeout(() => {
+      isThrottling = false;
+    }, delay);
+  }
+}
+```
+
+### 결론적으로, 디바운싱은 이벤트 발생 빈도를 최소화할 목적으로 사용하며, 스로틀링은 수시로 발생하는 이벤트를 일정한 간격으로 처리하려는 목적으로 사용한다.
