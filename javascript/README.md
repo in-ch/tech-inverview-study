@@ -1268,3 +1268,35 @@ Type Guard를 사용하는 가장 일반적인 상황은 유니온 타입을 다
 예를 들어  string | number와 같은 유니온 타입이 있는 경우, 특정 조건을 충족할 때마다 해당 변수의 타입을 더 좁혀서 더 구체적인 타입을 사용할 수 있다.
 
 가장 흔한 Type Guard는 `typeof`, `instanceof`, `in` 등의 연산자를 사용하는 것이다.
+
+## 기명 함수 (Named Function Expression)
+
+`기명 함수`란 이름 있는 함수이며,
+
+함수 표현식으로 만든 함수에 이름을 붙여주면 `기명 함수 표현식`이라고 한다.
+
+함수 표현식으로 함수가 할당된 변수에는 자동으로 'name'이라는 프로퍼티를 가지게 된다.
+
+이 때, 함수에 이름을 정해주지 않으면 변수 이름 자체를 값으로 가지고,
+
+```jsx
+const sayHi = function (){ // 이름을 정해주지 않음
+	console.log('Hi');
+}
+console.log(sayHi.name); // sayHi (변수명이 프로퍼티 value)
+```
+
+함수에 이름을 붙여주면 함수 이름을 값으로 갖는다.
+
+하지만 이 함수 이름으로 함수 외부에서 **함수를 호출할 때는 사용할 수 없다.**
+
+```jsx
+const sayHi = function printHi (){ // 이름 정해줌
+	console.log('Hi');
+}
+console.log(sayHi.name); // printHi
+sayHi();// Hi
+printHi(); // ReferenceError (함수 이름으로 함수를 호출할 수 없다)
+```
+
+대신 기명 함수 표현식에서 이 `함수 이름`으로는 함수 내부에서 `함수 자체`를 가리킬 때 사용할 수 있다.
