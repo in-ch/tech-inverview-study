@@ -1264,17 +1264,164 @@ Redux는 공유 상태 관리를 처리하는 데 도움이 되지만 다른 도
 
 ## Redux의 특징
 
-- **상태를 전역적으로 관리**하기에 어느 컴포넌트에 상태를 둬야할지 고민 안 해도 됨
-- **단방향 데이터 흐름**
-- 상태관리에서는 불변성 유지가 매우 중요하데, Redux는 **상태를 읽기 전용으로 취급**한다. (Immutable.js와 같은 라이브러리가 쓰이기도 한다)
-- **flux 아키텍처**를 따른다. (dispatch관리를 위해 redux-thunk나 redux-saga와 같은 미들웨어가 필수이다)
-- 여러 라이브러리를 함께 사용하는 경우가 있기 때문에 **러닝 커브가 높은 편**이다
-- 액션 하나를 추가하는데 작성이 필요한 부분이 많고, 컴포넌트와 스토어를 연결하는 필수적인 부분들이 있어 **코드량이 많아질 수 있다**.
+- 상태를 전역적으로 관리하기에 어느 컴포넌트에 상태를 둬야할지 고민 안 해도 됨
+- 단방향 데이터 흐름
+- 상태관리에서는 불변성 유지가 매우 중요하데, Redux는 상태를 읽기 전용으로 취급한다. (Immutable.js와 같은 라이브러리가 쓰이기도 한다)
+- flux 아키텍처를 따른다. (dispatch관리를 위해 redux-thunk나 redux-saga와 같은 미들웨어가 필수이다)
+- 여러 라이브러리를 함께 사용하는 경우가 있기 때문에 러닝 커브가 높은 편이다
+- 액션 하나를 추가하는데 작성이 필요한 부분이 많고, 컴포넌트와 스토어를 연결하는 필수적인 부분들이 있어 코드량이 많아질 수 있다.
 
 ## Recoil의 특징
 
-1. 비동기 처리를 기반으로 작성되어 동시성 모드를 제공하기 때문에, Redux와 같이 **다른 비동기 처리 라이브러리에 의존할 필요가 없다**.
+1. 비동기 처리를 기반으로 작성되어 동시성 모드를 제공하기 때문에, Redux와 같이 다른 비동기 처리 라이브러리에 의존할 필요가 없다.
     - Concurrent Mode : 흐름이 여러 개가 존재하는 경우이다. 리액트에서 렌더링의 동작 우선순위를 정하여 적절한 때에 렌더링해준다.
-2. atom -> selector를 거쳐 컴포넌트로 전달되는 하나의 data-flow를 가지고 있어, **복잡하지 않은 상태 구조**
-3. atom과 selector만 알고도 어느 정도 구현이 가능하기 때문에 **러닝 커브가 비교적 낮다**고 할 수 있다.
-4. store와 같은 외부 요인이 아닌 React 내부의 상태를 활용하고 context API를 통해 구현되어있기 때문에 **더 리액트에 가까운 라이브러리**라고 할 수 있다.
+2. atom -> selector를 거쳐 컴포넌트로 전달되는 하나의 data-flow를 가지고 있어, 복잡하지 않은 상태 구조
+3. atom과 selector만 알고도 어느 정도 구현이 가능하기 때문에 러닝 커브가 비교적 낮다고 할 수 있다.
+4. store와 같은 외부 요인이 아닌 React 내부의 상태를 활용하고 context API를 통해 구현되어있기 때문에 더 리액트에 가까운 라이브러리라고 할 수 있다.
+
+예를 들어 Hooks나 Context API를 사용하여 상태 관리를 할 수 있는데, 그런 경우에 여러가지 한계가 존재한다.
+<details>
+  <summary>- 컴포넌트 상태를 공통된 상위 컴포넌트까지 끌어올려 공유할 수 있지만, 이 과정에서 거대한 트리가 리렌더링이 되기도 한다.</summary>
+리액트에서는 상위 컴포넌트가 렌더링되면 하위 컴포넌트들은 다시 리랜더링이 된다. → 성능상 좋지 못하다. 
+</details>
+
+
+<details>
+  <summary>Context는 단일 값만 저장가능하고, 자체 Consumer를 가지는 여러 값들의 집합을 담는 것은 불가하다.</summary>
+- 만약 하나의 provider로 여러 값을 제어하고 싶을 경우
+
+```tsx
+const MyContext = React.createContext();
+
+const MyProvider = ({ children }) => {
+  const [value1, setValue1] = React.useState('');
+  const [value2, setValue2] = React.useState('');
+
+  const contextValue = {
+    value1, 
+    setValue1, 
+    value2, 
+    setValue2
+  };
+
+  return <MyContext.Provider value={contextValue}>{children}</MyContext.Provider>;
+};
+
+const MyComponent = () => {
+  const { value1, setValue1, value2, setValue2 } = React.useContext(MyContext);
+
+  // 여기서 value1과 value2를 사용할 수 있습니다.
+};
+```
+
+- 혹은 여러 provider를 만들어서 의존성을 주입해야 한다.
+
+```tsx
+const FirstContext = React.createContext();
+const SecondContext = React.createContext();
+
+const FirstProvider = ({ children, value }) => (
+  <FirstContext.Provider value={value}>{children}</FirstContext.Provider>
+);
+
+const SecondProvider = ({ children, value }) => (
+  <SecondContext.Provider value={value}>{children}</SecondContext.Provider>
+);
+```
+</details>
+
+<details>
+  <summary>위 특성으로 인해 state가 존재하는 곳부터 state가 사용되는 곳 까지 코드분할이 어렵게 된다.이러한 상황에서 Recoil은 React스러움을 유지하며 개선하는 방식의 라이브러리이다.</summary>
+
+결국 모든 provider로 감싸진 하위 컴포넌트는 provider의 value값인 context를 구독하게 되므로 context가 바뀌면 전부 리렌더링이 일어나게 된다. 
+
+만약 코드 스프레팅을 하고 싶다면 memo 등과 같은 React의 메모리제이션 기능을 활용해야 하는데, 메모리제이션 자체도 성능을 잡아먹는 기능일 뿐만 아니라, 일일히 모든 컴포넌트 마다 memo를 사용하는 것은 불가한 작업이다. 
+
+또한 value를 객체로 전달하게 될 경우 자바스크립트는 객체 비교에 취약하므로 의도치 않게 동작이 가능하다. 
+
+React의 Context API는 Context의 값을 사용하는 모든 컴포넌트를 통째로 리렌더링한다. 
+
+즉, Context 내의 어떤 데이터가 변경되면 해당 Context를 사용하는 모든 컴포넌트가 리렌더링된다고 보면 된다. 이것은 때때로 불필요한 리렌더링을 유발할 수 있다.
+
+Recoil은 더 섬세한 구독 방식을 제공한다. 
+
+Recoil에서는 각 컴포넌트가 개별적인 상태(아톰이나 셀렉터)에 구독하게 된다. 따라서, 해당 상태에 변화가 있을 때만 구독하고 있는 컴포넌트가 리렌더링된다. 이는 상태가 다수 있더라도 관련 없는 상태의 변경으로 인해 불필요하게 리렌더링되는 것을 방지할 수 있다.
+</details>
+
+<details>
+  <summary>Recoil은 방향그래프를 정의하고 리액트 트리에 붙이는데, 이 그래프의 뿌리(atom)으로부터 순수함수(selector)를 거쳐 컴포넌트로 흐른다.</summary>
+
+`Atom`: Atom은 Recoil에서 상태의 단위이다. 
+
+```java
+import { atom } from "recoil";
+
+export default atom({
+    key: 'countState',
+    default: 0,
+});
+```
+
+`Selector`: Selector는 순수 함수로, Atom의 상태를 변환하거나 결합하는 데 사용된다. 
+
+```java
+import { DefaultValue, selector } from "recoil";
+import countState from "../atom/countState";
+
+export default selector({
+    key: "countSelector",
+    get: ({get}): number => {
+        const count = get(countState);
+        return count + 1;
+    },
+    set: ({set, get}, newCount)=>{
+        return set(countState, newCount + 10)
+    }
+})
+```
+
+주의해야 할 것은 여기서 말하는 순수함수는 전통적인 의미의 순수 함수는 아니다. 
+
+전통적인 의미의 순수 함수는 주어진 입력에 대해 항상 동일한 출력을 반환하고 부수 효과(side effects)가 없는 함수를 의미한다.
+
+Recoil의 `selector`는 다음과 같은 특성을 가진다.
+
+- 입력에 따른 출력: Selector는 하나 이상의 Atom이나 다른 Selector를 입력으로 받아, 이를 기반으로 새로운 데이터를 계산, 이 계산 과정에서 Selector 자체는 외부 상태를 변경하지 않으며, 주어진 입력에 따라 결과를 반환
+- 부수 효과 없음: Selector는 부수 효과를 발생시키지 않는다.
+    
+    즉, 계산 과정에서 외부 상태를 변경하거나, I/O 작업을 수행하지 않는다.
+    
+- 의존성 추적: Selector는 의존하는 Atom이나 다른 Selector의 상태가 변경될 때만 다시 계산된다.
+
+그러나, Selector가 "순수 함수"라고 말하는 것에는 주의가 필요한데, 이유는 다음과 같다.
+
+- 동적 의존성: Selector는 실행 시점에 의존하는 Atom이나 다른 Selector를 동적으로 결정할 수 있습니다. 이는 순수 함수에서는 보통 발견되지 않는 특성이다.
+- 컴포넌트의 상태 변경: Selector는 계산된 값을 반환함으로써, 이 값을 구독하는 컴포넌트의 상태를 간접적으로 변경할 수 있다. 이는 순수 함수가 "외부 상태에 영향을 미치지 않는다"는 정의와 조금 다를 수 있다.
+</details>
+
+<details>
+  <summary>동시성모드(Concurrent Mode)등 여러 React기능들과 호환가능하다.</summary>
+
+Atomic한 상태 관리는 React의 동시성 모드(Concurrent Mode)와 같은 고급 기능들과 잘 호환되는 것으로 알려져 있습니다. 이러한 호환성은 여러 요인에 기반합니다:
+
+### `Atomic한 상태 관리란?`
+
+Atomic한 상태 관리는 상태를 최소 단위로 나누어 관리하는 방식을 말합니다. 이 방식에서 상태는 작은 단위(아톰)로 분리되며, 각 아톰은 독립적으로 업데이트되고 구독될 수 있습니다. 예를 들어, Recoil과 같은 라이브러리는 이러한 접근 방식을 채택하고 있습니다.
+
+### `React의 동시성 모드(Concurrent Mode)`
+
+동시성 모드는 React의 실험적인 기능으로, UI 렌더링 작업을 중단하고, 우선순위에 따라 다른 작업을 처리한 후 다시 렌더링 작업을 재개할 수 있는 능력을 제공합니다. 이 모드는 사용자 경험을 향상시키고, 대규모 업데이트 도중에도 애플리케이션이 반응성을 유지하도록 돕습니다.
+
+### `호환성의 이유`
+
+1. `독립적인 상태 업데이트`: Atomic한 상태 관리는 상태를 개별적인 단위로 나누어 관리합니다. 이는 React의 동시성 모드에서 다루는 여러 비동기 작업과 잘 맞음. 상태의 각 부분이 독립적으로 업데이트되므로, React가 비동기 작업을 수행하면서도 상태의 일관성을 유지하기 쉬움
+2. `우선순위 기반 업데이트`: 동시성 모드에서는 작업에 우선순위를 부여하여 중요한 업데이트를 먼저 처리할 수 있다. 
+    Atomic한 상태 관리는 이러한 우선순위 기반 업데이트와 잘 호환. 상태의 특정 부분이 변하면, 해당 상태에 의존하는 컴포넌트만 우선적으로 업데이트될 수 있다.
+3. `리소스 효율성`: Atomic한 상태 관리는 필요한 상태만 정확하게 업데이트. 이는 동시성 모드에서 중요한 이점이며, 불필요한 리소스 사용을 줄이고 애플리케이션의 반응성을 향상시킴
+4. `불필요한 리렌더링 방지`: Atomic한 상태 관리는 상태 변경 시 관련된 컴포넌트만 리렌더링하므로, 동시성 모드에서 중단과 재개가 발생할 때 불필요한 리렌더링을 방지
+
+### `결론`
+
+이러한 이유로, Atomic한 상태 관리 시스템은 React의 동시성 모드와 같은 고급 기능과 잘 호환된다. 
+이는 더 나은 사용자 경험과 애플리케이션의 성능 향상에 기여할 수 있다. 그러나 React의 동시성 모드는 여전히 실험적인 단계에 있으며, 해당 기능을 사용할 때는 관련 문서와 업데이트를 주의 깊게 확인하는 것이 중요함.
+</details>
